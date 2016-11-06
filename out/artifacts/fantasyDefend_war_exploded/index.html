@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Fantasy Defense</title>
+	<!--Bootstrap css stylesheet-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!--Google font-->
+	<link href="https://fonts.googleapis.com/css?family=Alegreya|Alegreya+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Signika:400,700" rel="stylesheet">
+	<!--all the custom css stylesheets-->
+	<link rel="stylesheet" type="text/css" href="./css/stylesheet-index.css">
+	<!--Google sigin-->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="60574168678-0k19n27a2eqnpa5cv7dtfabr0ugbcoeg.apps.googleusercontent.com">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
+    <script src="/scripts/main.js"></script>
+	    <script>
+        function start() {
+            gapi.load('auth2', function() {
+                auth2 = gapi.auth2.init({
+                    client_id: '60574168678-0k19n27a2eqnpa5cv7dtfabr0ugbcoeg.apps.googleusercontent.com',
+                    // Scopes to request in addition to 'profile' and 'email'
+                    //scope: 'additional_scope'
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+
+	<!--super container for the home page-->
+	<div class="home-container">
+
+		<!--top nav bar-->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#game"><img class="logo" src="./img/logo_final.png">Fantasy Defense</a>
+				<button type="button" class="btn btn-danger home-navbar-button">
+					<span class="glyphicon glyphicon-menu-hamburger home-nav-text"></span>
+				</button>
+			</div>
+
+			<ul class="nav navbar-nav">
+				<!-- <li class="empty-li"><a href="#">.</a></li> -->
+				<li class="active nonempty-li"><a href="#game">Game</a></li>
+				<li class="nonempty-li"><a href="#introduction">Introduction</a></li>
+				<li class="nonempty-li"><a href="#contact">Contact</a></li>
+			</ul>
+
+		</nav>
+
+		<a name="game"></a>
+		<div class="section-space"></div>
+		
+		<!--game section-->
+		<section class="section-game">
+			<center>
+			<div class="game-super-container">
+			<div class="game-title-container">
+				<div class="title-logo-div"><img src="./img/logo_final.png"></div>
+				<div class="title-div">Fantasy Defense</div>
+			</div>
+			<div class="game-description"><span>Fantasy Defense</span> is <div>a game that enbales you to enjoy</div> defending against attacks from <div> monsters in Chinese mythology!</div></div>
+			<div class="game-right">
+			<div class="play-container">
+				<div class="monster-container"><img src="./img/ppl_FeiLian.png"></div>
+
+				<div class="button-description-contianer">
+					<div class="button-description-contianer2">
+					<div class="button-description1"><span>Play as Guest: </span>Play the game without signing in</div>
+					<div><span>Sign in and Play: </span>Sign in with Google to save your game progress</div>
+					<div class="color-grey"></div>
+					</div>
+				</div>
+
+				<div class="button-container">
+					<form method="post" action="/LoginServlet">
+						<input name="id" value="Guest" hidden/>
+						<input name="name" value="Guest" hidden/>
+						<button type="submit" class="btn btn-success">
+							<span class="glyphicon glyphicon-user"></span>Play as Guest</button>
+					</form>
+
+
+						<button id="signinButton" type="button" class="btn btn-success">
+							<span class="glyphicon glyphicon-log-in" data-onsuccess="onSignIn"></span>Sign in and Play</button>
+
+						<script>
+							$('#signinButton').click(function() {
+								auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(signInCallback);
+							});
+						</script>
+
+
+
+
+				</div>
+			</div>
+			</div>
+
+			</div>
+			</center>	
+			
+		</section>
+
+
+		<a name="introduction"></a>
+		<div class="section-space2"></div>
+		<!--introduction section-->
+		<section class="section-introduction">
+
+			<center>
+			<div class="section-name">Introduction</div>
+			<div class="story">In the ancient time of China, Chi You the leader of the monster tribe started a rebellion	to overturn the ruling of Yellow Emperor. Yellow Emperor united his tribe with another powerful tribe leader, Yan Emperor to against Chi You. Right before Chi You was defeated, </div>
+			<div class="intro-subtitle">Five Boss Characters</div>
+			<ul class="monster-list">
+				<li class="mo m1">
+					<center>
+					<img src="./img/ppl_FeiLian.png">
+					<div>Fei Lian</div></center>
+				</li>
+				<li class="mo m2">
+					<img src="./img/ppl_HongHaier.png">
+					<center><div>Red Boy</div></center>
+				</li>
+				<li class="mo m3">
+					<img src="./img/ppl_CiTie.png">
+					<center><div>Ci Tie</div></center>
+				</li>
+				<li class="mo m4">
+					<img src="./img/ppl_HuoDou.png">
+					<center><div>Huo Dou</div></center>
+				</li>
+				<li class="mo m5">
+					<img src="./img/ppl_Qilin.png">
+					<center><div>Kirin</div></center>
+				</li>
+			</ul>
+			
+			<div class="intro-subtitle2">Five Tower Elements</div>
+			<ul class="tower-list">
+				<li class="to t1">
+					<center>
+					<img src="./img/eye_tower.png">
+					<div>Eye Tower</div></center>
+				</li>
+				<li class="to t2">
+					<img src="./img/fan_tower.png">
+					<center><div>Fan Tower</div></center>
+				</li>
+				<li class="to t3">
+					<img src="./img/gear_tower.png">
+					<center><div>Gear Tower</div></center>
+				</li>
+				<li class="to t4">
+					<img src="./img/java_tower.png">
+					<center><div>Java Tower</div></center>
+				</li>
+				<li class="to t5">
+					<img src="./img/xueyou_tower.png">
+					<center><div>Xueyou Tower</div></center>
+				</li>
+			</ul>
+			</center>
+
+			<div class="color-container-black"></div>
+		</section>
+		
+		
+
+		<a name="contact"></a>
+		<div class="section-space2"></div>
+		<!--contact section-->
+		<section class="section-contact">
+		<center>
+			<div class="section-name">Contact</div>
+			<div class="contact-text">Fantasy Defense was developed by Team Yellow Life</div>
+
+			<ul class="member-container">
+				<li class="li2 li4">
+					<div>Professor</div>
+					<div>Richard McKenna</div>
+				</li>
+				<li class="li1 li4">
+					<div>Lead Programmer</div>
+					<div>Jun Hao</div>
+				</li>
+				<li class="li2 li4">
+					<div>Data Designer</div>
+					<div>Qixiang Chen</div>
+				</li>
+				<li class="li1 li3">
+					<div>Lead Designer</div>
+					<div>Haozhi Qu</div>
+				</li>
+				<li class="li2 li3">
+					<div>Project Manager</div>
+					<div>Yinquan Hao</div>
+				</li>
+				<li class="li1 li3">
+					<div>Mobile Developer</div>
+					<div>Liwen Fan</div>
+				</li>
+			</ul>
+
+			<div class="contact-text2">Feel free to contact us if you have any questions</div>
+
+			<div class="team-email"><span class="glyphicon glyphicon-envelope"></span>
+				<a href="mailto:lifeyellow4@gmail.com">lifeyellow4@gmail.com</a>
+			</div>
+		</center>
+		</section>
+		
+	</div>
+
+
+
+
+
+	<!--footer-->
+	<footer>
+		<center>
+		<div class="copyright">© 2016 Fantasy Defense. All rights reserved</div>
+		</center>
+	</footer>
+
+
+
+
+	<!--jQuery and Bootstrap scripts-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!--all the custom scripts-->
+	<script src="./scripts/script-index.js"></script>
+</body>
+</html>
