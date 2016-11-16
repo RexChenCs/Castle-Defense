@@ -9,12 +9,12 @@ $(document).ready(function(){
 			if(!home_navbar_button.is(event.target)&&!home_navbar_text.is(event.target)){
 				navbar_nav.removeClass("home-navbar-show");
 			}
-    	},
+    	}/*,
     	touchend: function(event){
     		if(!home_navbar_button.is(event.target)&&!home_navbar_text.is(event.target)){
 				navbar_nav.removeClass("home-navbar-show");
 			}
-	    },
+	    },*/
 	});
 
 

@@ -434,7 +434,7 @@ footer{
 }
 .game-description span{
 	font-size: 54px;
-	color: #990000;
+	color: #B22222;
 }
 .game-title-container .title-div{
 	position: relative;
@@ -677,7 +677,7 @@ footer{
 
 @media screen and (max-width: 550px){
 .monster-list{
-	width: 305px;
+	width: 285px;
 	font-size: 17px;
 }
 .monster-list .mo{
@@ -760,7 +760,7 @@ footer{
 }
 @media screen and (max-width: 550px){
 .tower-list{
-	width: 305px;
+	width: 285px;
 	font-size: 17px;
 }
 .tower-list .to{
@@ -866,13 +866,13 @@ footer{
 
 @media screen and (max-width: 550px){
 .member-container{
-	height: 165px;
+	height: 160px;
 	width: 285px;
 	padding: 0px 0px 0px 15px;
 }
 .member-container li{
 	width: 135px;
-	font-size: 18px;
+	font-size: 17px;
 }
 .member-container .li1{
 	padding: 0px 0px 10px 0px;
@@ -885,12 +885,12 @@ footer{
 	font-size: 28px;
 }
 .contact-text{
-	font-size: 16px;
+	font-size: 15px;
 	padding: 0px 0px 20px 0px;
 }
 .contact-text2{
-	font-size: 16px;
-	padding: 5px 0px 0px 0px;
+	font-size: 15px;
+	padding: 0px 0px 0px 0px;
 }
 .team-email .glyphicon{
 	padding: 0px 2px 0px 0px;
