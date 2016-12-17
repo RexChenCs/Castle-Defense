@@ -1751,7 +1751,9 @@ function disableXueyouTowerButton(){
 function enableXueyouTowerButton(){
      document.getElementById("xueyou-tower-button").disabled = false;
 }
-
+function getSideBarWidth(){
+     return document.getElementById('game-side-bar').clientWidth;
+}
 
 /***********************************add by lead designer*****************************************/
 
