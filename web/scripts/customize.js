@@ -531,7 +531,7 @@ function addCustomLevel(name){
     var button = document.createElement("BUTTON");
 
     button.addEventListener('click',function(){loadLevel(name);});
-    button.innerHTML="Load"
+    button.innerHTML="Load";
     col2.appendChild(button);
 }
 function addCustomLevelCaller(){
@@ -550,4 +550,19 @@ function addCustomLevelCaller(){
     }
 }
 document.getElementById("control-customize-button3").addEventListener('click',function(){addCustomLevelCaller();});
+
+
+
+function disableOriginButton(){
+    document.getElementById("origin-button").disabled = true;
+}
+function enableOriginButton(){
+    document.getElementById("origin-button").disabled = false;
+}
+function disableEndButton(){
+    document.getElementById("end-button").disabled = true;
+}
+function enableEndButton(){
+    document.getElementById("end-button").disabled = false;
+}
 /***********************************add by lead designer****************************************/
