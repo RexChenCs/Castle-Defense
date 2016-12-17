@@ -171,12 +171,18 @@ body{
 	font-size: 19px;
 	color: white;
 }
+#tower-effect-text{
+	font-size: 14px;
+}
 @media screen and (max-width: 1200px){
 	.tower-status-container{
 		padding: 0px 0px 8px 20px;
 	}
 	.tower-status-container .tower-table td{
 		font-size: 15px;
+	}
+	#tower-effect-text{
+		font-size: 10px;
 	}
 }
 @media screen and (max-width: 900px){
