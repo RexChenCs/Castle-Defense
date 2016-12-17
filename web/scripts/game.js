@@ -1752,7 +1752,7 @@ function enableXueyouTowerButton(){
      document.getElementById("xueyou-tower-button").disabled = false;
 }
 function getSideBarWidth(){
-     return document.getElementById('game-side-bar').clientWidth;
+     return document.getElementById('game-side-bar').clientWidth+10;
 }
 
 /***********************************add by lead designer*****************************************/

@@ -569,6 +569,6 @@ function enableEndButton(){
     document.getElementById("end-button").disabled = false;
 }
 function getSideBarWidth(){
-     return document.getElementById('game-side-bar').clientWidth;
+     return document.getElementById('game-side-bar').clientWidth+10;
 }
 /***********************************add by lead designer****************************************/
