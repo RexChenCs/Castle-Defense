@@ -1717,6 +1717,42 @@ function disableGameButton(){
 function enableGameButton(){
      document.getElementById("control-game-button1").disabled = false;
 }
+
+
+
+
+function disableEyeTowerButton(){
+     document.getElementById("eye-tower-button").disabled = true;
+}
+function enableEyeTowerButton(){
+     document.getElementById("eye-tower-button").disabled = false;
+}
+function disableFanTowerButton(){
+     document.getElementById("fan-tower-button").disabled = true;
+}
+function enableFanTowerButton(){
+     document.getElementById("fan-tower-button").disabled = false;
+}
+function disableGearTowerButton(){
+     document.getElementById("gear-tower-button").disabled = true;
+}
+function enableGearTowerButton(){
+     document.getElementById("gear-tower-button").disabled = false;
+}
+function disableJavaTowerButton(){
+     document.getElementById("java-tower-button").disabled = true;
+}
+function enableJavaTowerButton(){
+     document.getElementById("java-tower-button").disabled = false;
+}
+function disableXueyouTowerButton(){
+     document.getElementById("xueyou-tower-button").disabled = true;
+}
+function enableXueyouTowerButton(){
+     document.getElementById("xueyou-tower-button").disabled = false;
+}
+
+
 /***********************************add by lead designer*****************************************/
 
 
