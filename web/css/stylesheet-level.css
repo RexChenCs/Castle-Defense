@@ -301,24 +301,60 @@ body{
 
 /*******level side bar*******/
 #level-button-container{
-	position: absolute;
-	top: 43%;
-	left: 20%;
-	transform: translate(100%, 100%);
-	border: 5px;
-	border-radius: 5px;
-	overflow: hidden;
 	display: block;
+	position: absolute;
+	top: 75% !important;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 #level-button-container button{
-	display: block;
-	height: 40px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	height: 53px;
 	width: 150px;
-	border-radius: 3px;
-	box-shadow: 3px 3px 19px -2px #d9534f;
-	margin: 0px 20px 20px 20px;
-	font-family: 'Alegreya Sans';
+	margin: 10px 10px 10px 10px;
+	display: inline-block;
+	border-radius: 0px 0px 0px 0px;
+	background: #cd4c4e;
+	color: white;
+	/*font*/
+	font-family: 'Roboto';/*can use different font later*/
 	font-weight: bold;
-	font-size: 26px;
+	font-size: 19px;
+}
+/*#level-button-container #savebtn{
+	display: none;
+}*/
+#level-button-container button:hover{
+	background: #B63436;
+}
+
+
+@media screen and (max-width: 1200px){
+#level-button-container button{
+	height: 43px;
+	width: 140px;
+	margin: 7px 7px 7px 7px;
+	font-size: 16px;
+}
+}
+
+@media screen and (max-width: 900px){
+#level-button-container button{
+	height: 35px;
+	width: 100px;
+	margin: 5px 5px 5px 5px;
+	font-size: 14px;
+}
+}
+
+@media screen and (max-width: 550px){
+#level-button-container button{
+	height: 28px;
+	width: 73px;
+	margin: 0px 0px 0px 0px;
+	font-size: 10px;
+}
 }
