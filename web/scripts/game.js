@@ -1678,7 +1678,7 @@ document.getElementById("eye-tower-button").addEventListener('mouseover',functio
 document.getElementById("xueyou-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Xueyou","40","1000","None");});
 document.getElementById("java-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Java","100","400","None");});
 document.getElementById("fan-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Fan","20","0","-45% Movement");});
-document.getElementById("gear-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Gear","20","0","HP regen");});
+document.getElementById("gear-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Gear","20","0","HP Regen");});
 document.getElementById("eye-tower-button").addEventListener('click',function(){clickTowerButton(1);});
 document.getElementById("xueyou-tower-button").addEventListener('click',function(){clickTowerButton(2);});
 document.getElementById("java-tower-button").addEventListener('click',function(){clickTowerButton(3);});
