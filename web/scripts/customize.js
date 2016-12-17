@@ -532,15 +532,18 @@ function addCustomLevel(name){
 
     button.addEventListener('click',function(){loadLevel(name);});
     button.innerHTML="Load";
+    button.setAttribute("data-dismiss", "modal");
     col2.appendChild(button);
 }
 function addCustomLevelCaller(){
     var table = document.getElementById("custom-level-table");
     var number = table.getElementsByTagName("tr").length;
     while(number>0){
-        table.deleteCell(0);
+        table.deleteRow(0);
         number = number-1;
     }
+    levelCount = 0;
+    row = null;
     var cus =  window.sessionStorage.getItem("cusName");
     var cusName = cus.substr(0, cus.length - 1);
     var cusNameList = cusName.split(",");
