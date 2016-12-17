@@ -675,3 +675,147 @@ button.all-custom-button:hover{
 }
 }
 /*******save*******/
+
+
+/*******load*******/
+.load-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.history-text{
+    color: white;
+    /*font*/
+    font-family: 'Roboto';/*can use different font later*/
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+@media screen and (max-width: 1200px){
+.history-text{
+    font-size: 20px;
+}
+}
+@media screen and (max-width: 900px){
+.history-text{
+    font-size: 15px;
+}
+}
+
+.custom-level-table-container{
+    color: white;
+    /*font*/
+    font-family: 'Roboto';/*can use different font later*/
+    font-size: 18px;
+    font-weight: bold;
+
+    height: 270px;
+    overflow-y: scroll;
+    display: inline-block;
+}
+@media screen and (max-width: 1200px){
+.custom-level-table-container{
+    font-size: 15px;
+    height: 240px;
+}
+}
+@media screen and (max-width: 900px){
+.custom-level-table-container{
+    font-size: 13px;
+    height: 160px;
+}
+}
+
+
+
+
+
+.history-container{
+    position: relative;
+    height: 300px;
+    width: 500px;
+}
+@media screen and (max-width: 1200px){
+.history-container{
+    height: 270px;
+    width: 400px;
+}
+}
+@media screen and (max-width: 900px){
+.history-container{
+    height: 200px;
+    width: 300px;
+}
+}
+.custom-level-table-container  td.load-td2{
+    padding: 5px 15px 5px 0px;
+}
+.custom-level-table-container  td.load-td1{
+    color: white;
+    width: 53px;
+    padding: 5px 5px 5px 15px;
+}
+.custom-level-table-container button{
+    color: white;
+    display: inline-block;
+    margin: 0;
+    padding: 10px;
+    border: 0;
+    background: #B63436;
+    
+    /*font*/
+    font-family: 'Roboto';/*can use different font later*/
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 28px;
+}
+@media screen and (max-width: 1200px){
+.custom-level-table-container  td.load-td2{
+    padding: 5px 15px 5px 0px;
+}
+.custom-level-table-container  td.load-td1{
+    width: 40px;
+    padding: 5px 5px 5px 15px;
+}
+.custom-level-table-container button{
+    padding: 7px;
+    font-size: 14px;
+    border-radius: 28px;
+}
+}
+@media screen and (max-width: 900px){
+.custom-level-table-container  td.load-td2{
+    padding: 3px 10px 3px 0px;
+}
+.custom-level-table-container  td.load-td1{
+    width: 40px;
+    padding: 3px 3px 3px 10px;
+}
+.custom-level-table-container button{
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 28px;
+}
+}
+
+
+
+
+
+
+
+
+.custom-level-table-container::-webkit-scrollbar{
+    width: 12px;
+}
+.custom-level-table-container::-webkit-scrollbar-thumb{
+    border-radius: 17px;
+    background-color: rgba(178, 34, 34, 0.9);
+}
+@media screen and (max-width: 900px){
+.custom-level-table-container::-webkit-scrollbar{
+    width: 10px;
+}
+}
+/*******load*******/

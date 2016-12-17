@@ -36,16 +36,7 @@ function start() {
     });
 }
 
-function writeUserData(userId, name, level) {
 
-    firebase.database().ref('user/'+userId).set({ Name : name, Level : level});
-
-}
-
-function UpdateUserLevel(userId,level){
-    firebase.database().ref('user/'+userId).update({ Level : level});
-    alert("Save Sucessfully!");
-}
 
 function signInCallback(authResult) {
 
@@ -65,14 +56,6 @@ function signInCallback(authResult) {
     }
 }
 
-/*level selection panel buttion control for auth user and guest*/
-function levelButtonControl() {
-    if(window.sessionStorage.getItem("UserId") === "Guest"){
-        var child = document.getElementById("savebtn");
-        child.parentNode.removeChild(child);
-        document.getElementById("level-button-container").style.top="55%";
-    }
-}
 
 /*load json file for game setting*/
 function loadJsonData() {
@@ -150,3 +133,20 @@ function readShareLevel(){
             });
         });
 }
+
+function writeUserData(userId, name, level) {
+
+    firebase.database().ref('user/'+userId).set({ Name : name, Level : level});
+
+}
+
+//change
+function UpdateUserLevel(){
+    var auth = window.sessionStorage.getItem("auth");
+    if(auth =="1"){
+        var userId = window.sessionStorage.getItem("UserId");
+        var level = window.sessionStorage.getItem("UserLevel");
+        firebase.database().ref('user/'+userId).update({ Level : level});
+    }
+}
+//change

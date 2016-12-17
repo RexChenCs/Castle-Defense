@@ -125,12 +125,27 @@ function saveAction(){
     var content = JSON.stringify({Map : defaultMap, Monster: monsterStack, Money : money});
     mapName = getLevelName();
     shareMyWork(mapName,defaultMap,monsterStack,money);
+    //change
+    var cuslist = window.sessionStorage.getItem("cusName");
+    cuslist = cuslist+mapName+",";
+    window.sessionStorage.setItem("cusName",cuslist);
+    //change
     window.localStorage.setItem(mapName,content);
 }
 
 function loadLevel(levelname){
     resetmap();
     mapName = levelname;
+    // change
+    firebase.database().ref('share/' + levelname).once('value').then(function(snapshot) {
+        var balance = snapshot.child("Balance").val();
+        var map = snapshot.child("Map").val();
+        var monster = snapshot.child("Monster").val();
+        var content = JSON.stringify({Map : map, Monster: monster, Money : balance});
+        alert(content);
+        window.localStorage.setItem(mapName,content);
+    });
+    // change
     var temp = window.localStorage.getItem(levelname);
     var data = JSON.parse(temp);
     money = data.Money;
@@ -403,8 +418,8 @@ function getLevelName(){
     return document.getElementById("levelname").value;
 }
 /*function getloadMapName(){
-    return document.getElementById("mapname").value;
-}*/
+ return document.getElementById("mapname").value;
+ }*/
 function getCustomMoney(){
     //window.alert(document.getElementById("money-text").innerHTML);
     return document.getElementById("money-text").innerHTML;
@@ -425,28 +440,28 @@ document.getElementById("control-customize-button1").addEventListener('click',fu
         alert("Please save first!");
     }
 
-    });
+});
 document.getElementById("control-customize-button2").addEventListener('click',function(){saveAction()});
 document.getElementById("control-customize-button4").addEventListener('click',function(){window.location.href="game.html"});
 /*document.getElementById("control-customize-button5").addEventListener('click',function(){
-    loadLevel(getloadMapName());
-})*/
+ loadLevel(getloadMapName());
+ })*/
 
 function moneyText(isIncrement){
-var s = document.getElementById("money-text").textContent;
-var s2 = parseInt(s);
-if(isIncrement){
-  if(s2<1000){
-    s2=s2+100;
-    document.getElementById("money-text").innerHTML=s2;
-  }
-}
-else{
-  if(s2>100){
-    s2=s2-100;
-    document.getElementById("money-text").innerHTML=s2;
-  }
-}
+    var s = document.getElementById("money-text").textContent;
+    var s2 = parseInt(s);
+    if(isIncrement){
+        if(s2<1000){
+            s2=s2+100;
+            document.getElementById("money-text").innerHTML=s2;
+        }
+    }
+    else{
+        if(s2>100){
+            s2=s2-100;
+            document.getElementById("money-text").innerHTML=s2;
+        }
+    }
 }
 document.getElementById("plus-button").addEventListener('click',function(){moneyText(true);});
 document.getElementById("minus-button").addEventListener('click',function(){moneyText(false);});
@@ -460,29 +475,29 @@ button1.addEventListener('click',function(){removeMonster(row1);remove(indextemp
 button2.addEventListener('click',function(){removeMonster(row2);remove(indextemp2);});
 function addMonsterUI(name){
 
-var table = document.getElementById("selected-monster-table");
-if(table.rows.length<50){
-  var row = table.insertRow(-1);
-  var col1 = row.insertCell(0);
-  var col2 = row.insertCell(1);
-  col1.className = "monster-name";
-  col2.className = "delete-monster";
-  col1.innerHTML = name;
-  var button = document.createElement("BUTTON");
-  var indextemp3 = row.rowIndex;
-  button.addEventListener('click',function(){removeMonster(row);remove(indextemp3);});
-  var span = document.createElement("SPAN");
-  span.className = "glyphicon glyphicon-remove";
-  col2.appendChild(button);
-  button.appendChild(span);
-}
+    var table = document.getElementById("selected-monster-table");
+    if(table.rows.length<50){
+        var row = table.insertRow(-1);
+        var col1 = row.insertCell(0);
+        var col2 = row.insertCell(1);
+        col1.className = "monster-name";
+        col2.className = "delete-monster";
+        col1.innerHTML = name;
+        var button = document.createElement("BUTTON");
+        var indextemp3 = row.rowIndex;
+        button.addEventListener('click',function(){removeMonster(row);remove(indextemp3);});
+        var span = document.createElement("SPAN");
+        span.className = "glyphicon glyphicon-remove";
+        col2.appendChild(button);
+        button.appendChild(span);
+    }
 }
 
 function removeMonster(row){
     var table = document.getElementById("selected-monster-table");
     if(table.rows.length>2){
-      var rowIndex = row.rowIndex;
-      table.deleteRow(rowIndex);
+        var rowIndex = row.rowIndex;
+        table.deleteRow(rowIndex);
     }
 }
 
@@ -501,36 +516,38 @@ document.getElementById("mob-button").addEventListener('click',function(){addMon
 
 var levelCount = 0;
 var row = null;
-function addCustomLevel(name){  
-  var table = document.getElementById("custom-level-table");
-  if(levelCount%6==0){
-    row = table.insertRow(-1);
-  }
-  var col1 = row.insertCell(levelCount%6);
-  levelCount = levelCount+1;
-  var col2 = row.insertCell(levelCount%6);
-  levelCount = levelCount+1;
-  col1.className = "load-td1";
-  col2.className = "load-td2";
-  col1.innerHTML = name;
-  var button = document.createElement("BUTTON");
+function addCustomLevel(name){
+    var table = document.getElementById("custom-level-table");
+    if(levelCount%6==0){
+        row = table.insertRow(-1);
+    }
+    var col1 = row.insertCell(levelCount%6);
+    levelCount = levelCount+1;
+    var col2 = row.insertCell(levelCount%6);
+    levelCount = levelCount+1;
+    col1.className = "load-td1";
+    col2.className = "load-td2";
+    col1.innerHTML = name;
+    var button = document.createElement("BUTTON");
 
-  button.addEventListener('click',function(){loadLevel(name);});
-  button.innerHTML="Load"
-  col2.appendChild(button);
+    button.addEventListener('click',function(){loadLevel(name);});
+    button.innerHTML="Load"
+    col2.appendChild(button);
 }
 function addCustomLevelCaller(){
-  var table = document.getElementById("custom-level-table");
-  var number = table.getElementsByTagName("tr").length;
-  while(number>0){
-    table.deleteCell(0);
-    number = number-1;
-  }
-  var a = ["ss","ff","dd","ss","ff","dd","ss","ff","dd","ss","ff","dd"];
-  var i;
-  for(i = 0; i<a.length; i++){
-    addCustomLevel(a[i]);
-  }
+    var table = document.getElementById("custom-level-table");
+    var number = table.getElementsByTagName("tr").length;
+    while(number>0){
+        table.deleteCell(0);
+        number = number-1;
+    }
+    var cus =  window.sessionStorage.getItem("cusName");
+    var cusName = cus.substr(0, cus.length - 1);
+    var cusNameList = cusName.split(",");
+    var i;
+    for(i = 0; i<cusNameList.length; i++){
+        addCustomLevel(cusNameList[i]);
+    }
 }
 document.getElementById("control-customize-button3").addEventListener('click',function(){addCustomLevelCaller();});
 /***********************************add by lead designer****************************************/
