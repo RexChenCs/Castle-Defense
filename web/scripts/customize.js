@@ -1,4 +1,4 @@
-/**
+/*
  * Created by Leo on 11/21/16.
  */
 
@@ -402,9 +402,9 @@ function getLevelName(){
     //window.alert(document.getElementById("levelname").value);
     return document.getElementById("levelname").value;
 }
-function getloadMapName(){
+/*function getloadMapName(){
     return document.getElementById("mapname").value;
-}
+}*/
 function getCustomMoney(){
     //window.alert(document.getElementById("money-text").innerHTML);
     return document.getElementById("money-text").innerHTML;
@@ -428,9 +428,9 @@ document.getElementById("control-customize-button1").addEventListener('click',fu
     });
 document.getElementById("control-customize-button2").addEventListener('click',function(){saveAction()});
 document.getElementById("control-customize-button4").addEventListener('click',function(){window.location.href="game.html"});
-document.getElementById("control-customize-button5").addEventListener('click',function(){
+/*document.getElementById("control-customize-button5").addEventListener('click',function(){
     loadLevel(getloadMapName());
-})
+})*/
 
 function moneyText(isIncrement){
 var s = document.getElementById("money-text").textContent;
@@ -496,4 +496,41 @@ document.getElementById("kirin-button").addEventListener('click',function(){addM
 document.getElementById("redboy-button").addEventListener('click',function(){addMonsterUI("Red Boy");addMonster(1);});
 document.getElementById("huodou-button").addEventListener('click',function(){addMonsterUI("Huo Dou");addMonster(2);});
 document.getElementById("mob-button").addEventListener('click',function(){addMonsterUI("Mob");addMonster(4);});
-/***********************************add by lead designer*****************************************/
+
+
+
+var levelCount = 0;
+var row = null;
+function addCustomLevel(name){  
+  var table = document.getElementById("custom-level-table");
+  if(levelCount%6==0){
+    row = table.insertRow(-1);
+  }
+  var col1 = row.insertCell(levelCount%6);
+  levelCount = levelCount+1;
+  var col2 = row.insertCell(levelCount%6);
+  levelCount = levelCount+1;
+  col1.className = "load-td1";
+  col2.className = "load-td2";
+  col1.innerHTML = name;
+  var button = document.createElement("BUTTON");
+
+  button.addEventListener('click',function(){loadLevel(name);});
+  button.innerHTML="Load"
+  col2.appendChild(button);
+}
+function addCustomLevelCaller(){
+  var table = document.getElementById("custom-level-table");
+  var number = table.getElementsByTagName("tr").length;
+  while(number>0){
+    table.deleteCell(0);
+    number = number-1;
+  }
+  var a = ["ss","ff","dd","ss","ff","dd","ss","ff","dd","ss","ff","dd"];
+  var i;
+  for(i = 0; i<a.length; i++){
+    addCustomLevel(a[i]);
+  }
+}
+document.getElementById("control-customize-button3").addEventListener('click',function(){addCustomLevelCaller();});
+/***********************************add by lead designer****************************************/
