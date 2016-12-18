@@ -571,4 +571,26 @@ function enableEndButton(){
 function getSideBarWidth(){
      return document.getElementById('game-side-bar').clientWidth+10;
 }
+
+
+
+
+var alert = document.getElementById("alert-normal");
+function hideAlert(){
+  alert.style.display="none";
+}
+function showAlert(){
+  alert.style.display="inline-block";
+  setTimeout("hideAlert()",3000);
+}
+function changeAlert(isDanger,text){
+  if(isDanger){
+    alert.className="alert alert-danger";
+  }
+  else{
+    alert.className="alert alert-success";
+  }
+  alert.innerHTML = text;
+}
+document.getElementById("control-customize-button2").addEventListener('click',function(){showAlert();});
 /***********************************add by lead designer****************************************/

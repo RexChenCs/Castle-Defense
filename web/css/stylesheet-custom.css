@@ -819,3 +819,29 @@ button.all-custom-button:hover{
 }
 }
 /*******load*******/
+
+/*******alert*******/
+.alert{
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%,0%);
+    display: inline-block;
+    /*font*/
+    font-family: 'Roboto';/*can use different font later*/
+    font-weight: bold;
+    font-size: 18px;
+}
+#alert-normal{
+    display: none;
+}
+@media screen and (max-width: 1200px){
+.alert{
+    font-size: 14px;
+}
+}
+@media screen and (max-width: 900px){
+.alert{
+    font-size: 12px;
+}
+}
+/*******alert*******/
