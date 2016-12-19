@@ -402,7 +402,7 @@ var backstart;
 var timer = 0;
 var size  = Math.min(window.innerHeight,window.innerWidth);
 var mapName = window.sessionStorage.getItem("UserMap");
-alert ("loading level "+ mapName);     // "test"; 
+// alert ("loading level "+ mapName);     // "test"; 
 var jsonString = window.localStorage.getItem(mapName);
 var jsonData = JSON.parse(jsonString);
 var mapBaseArray = new Array();

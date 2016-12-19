@@ -61,13 +61,12 @@ function signInCallback(authResult) {
 function loadJsonData() {
     var dataFile = "./scripts/gameDataSet.json";
     /*loadData from json file*/
-    loadData(dataFile);
-    if(window.localStorage.getItem("MyData") === null){
-        window.location.reload();
+    if(window.sessionStorage.getItem("MyData") === null){
+        loadData(dataFile);
     }
     function loadData(jsonFile) {
         $.getJSON(jsonFile, function (json) {
-            window.localStorage.setItem("MyData", JSON.stringify(json));
+            window.sessionStorage.setItem("MyData", JSON.stringify(json));
         });
     }
 }
@@ -140,7 +139,6 @@ function writeUserData(userId, name, level) {
 
 }
 
-//change
 function UpdateUserLevel(){
     var auth = window.sessionStorage.getItem("auth");
     if(auth =="1"){
@@ -149,4 +147,3 @@ function UpdateUserLevel(){
         firebase.database().ref('user/'+userId).update({ Level : level});
     }
 }
-//change

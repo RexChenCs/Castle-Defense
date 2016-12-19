@@ -15,8 +15,7 @@ var spacing = 20;
 var defaultMap;
 
 //*************************************data set******************************************
-loadJsonData();
-var dataSet = JSON.parse(window.localStorage.getItem("MyData"));
+var dataSet = JSON.parse(window.sessionStorage.getItem("MyData"));
 var balanceArray = dataSet.BalanceSet;
 var monsterArray = dataSet.MonsterSet;
 var MapArray = dataSet.MapSet;
