@@ -57,7 +57,7 @@ function signInCallback(authResult) {
 }
 
 
-/*load json file for game setting*/
+/*load json file for game setting change*/
 function loadJsonData() {
     var dataFile = "./scripts/gameDataSet.json";
     /*loadData from json file*/
@@ -127,8 +127,14 @@ function readShareLevel(){
                 var key = childSnapshot.key;
                 cusName = cusName+key + ",";
                 window.sessionStorage.setItem("cusName",cusName);
-                // childData will be the actual contents of the child
-                // var childData = childSnapshot.val();
+                //childData will be the actual contents of the child
+                var Data = childSnapshot;
+                var balance = Data.child("Balance").val();
+                var map = Data.child("Map").val();
+                var monster = Data.child("Monster").val();
+                var content = JSON.stringify({Map : map, Monster: monster, Money : balance});
+                //alert(content);
+                window.localStorage.setItem(key,content);
             });
         });
 }

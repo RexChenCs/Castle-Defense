@@ -1176,7 +1176,10 @@ gameScreen.prototype ={
                         //alert("reached1"+enemyArrayIndex);
                         //initialPositionX += 20;
                         //initialPositionY += 20;
+                    }else if (popedValue === 5){
+                        enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x + size / 20, mons_start_position_y + size / 20, home, 'tie', 5000, 50, 20, 1);
                     }
+                    //%%% change here
                     enemyArrayIndex++;
 
                 }
@@ -1359,52 +1362,54 @@ function enableGameButton(){
 
 
 
+
+
 function disableEyeTowerButton(){
-     document.getElementById("eye-tower-button").disabled = true;
+    document.getElementById("eye-tower-button").disabled = true;
 }
 function enableEyeTowerButton(){
-     document.getElementById("eye-tower-button").disabled = false;
+    document.getElementById("eye-tower-button").disabled = false;
 }
 function disableFanTowerButton(){
-     document.getElementById("fan-tower-button").disabled = true;
+    document.getElementById("fan-tower-button").disabled = true;
 }
 function enableFanTowerButton(){
-     document.getElementById("fan-tower-button").disabled = false;
+    document.getElementById("fan-tower-button").disabled = false;
 }
 function disableGearTowerButton(){
-     document.getElementById("gear-tower-button").disabled = true;
+    document.getElementById("gear-tower-button").disabled = true;
 }
 function enableGearTowerButton(){
-     document.getElementById("gear-tower-button").disabled = false;
+    document.getElementById("gear-tower-button").disabled = false;
 }
 function disableJavaTowerButton(){
-     document.getElementById("java-tower-button").disabled = true;
+    document.getElementById("java-tower-button").disabled = true;
 }
 function enableJavaTowerButton(){
-     document.getElementById("java-tower-button").disabled = false;
+    document.getElementById("java-tower-button").disabled = false;
 }
 function disableXueyouTowerButton(){
-     document.getElementById("xueyou-tower-button").disabled = true;
+    document.getElementById("xueyou-tower-button").disabled = true;
 }
 function enableXueyouTowerButton(){
-     document.getElementById("xueyou-tower-button").disabled = false;
+    document.getElementById("xueyou-tower-button").disabled = false;
 }
 function getSideBarWidth(){
-     return document.getElementById('game-side-bar').clientWidth+10;
+    return document.getElementById('game-side-bar').clientWidth+10;
 }
 
 
 var isCurrentMute = false;
 function resetMuteButton(){
-     var muteButton = document.getElementById("game-control-span3");
-     if(isCurrentMute){
-          isCurrentMute = false;
-          muteButton.className = "glyphicon glyphicon-volume-up";
-     }
-     else{
-          isCurrentMute = true;
-          muteButton.className = "glyphicon glyphicon-volume-off";
-     }
+    var muteButton = document.getElementById("game-control-span3");
+    if(isCurrentMute){
+        isCurrentMute = false;
+        muteButton.className = "glyphicon glyphicon-volume-up";
+    }
+    else{
+        isCurrentMute = true;
+        muteButton.className = "glyphicon glyphicon-volume-off";
+    }
 }
 
 document.getElementById("control-game-button3").addEventListener('click',function(){resetMuteButton();});

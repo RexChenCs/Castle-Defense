@@ -339,28 +339,28 @@ body{
 
 
 @media screen and (max-width: 1200px){
-#level-button-container button{
-	height: 43px;
-	width: 140px;
-	margin: 7px 7px 7px 7px;
-	font-size: 16px;
-}
+	#level-button-container button{
+		height: 43px;
+		width: 140px;
+		margin: 7px 7px 7px 7px;
+		font-size: 16px;
+	}
 }
 
 @media screen and (max-width: 900px){
-#level-button-container button{
-	height: 35px;
-	width: 100px;
-	margin: 5px 5px 5px 5px;
-	font-size: 14px;
-}
+	#level-button-container button{
+		height: 35px;
+		width: 100px;
+		margin: 5px 5px 5px 5px;
+		font-size: 14px;
+	}
 }
 
 @media screen and (max-width: 550px){
-#level-button-container button{
-	height: 28px;
-	width: 73px;
-	margin: 0px 0px 0px 0px;
-	font-size: 10px;
-}
+	#level-button-container button{
+		height: 28px;
+		width: 73px;
+		margin: 0px 0px 0px 0px;
+		font-size: 10px;
+	}
 }

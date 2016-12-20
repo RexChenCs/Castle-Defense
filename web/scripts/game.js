@@ -26,9 +26,9 @@ var stars = [];
 var localStorageName;
 var player = window.sessionStorage.getItem("auth");
 if (player == "1"){
-    localStorageName = "player";
+     localStorageName = "player";
 }else{
-    localStorageName = "stars";
+     localStorageName = "stars";
 }
 
 // level we are currently playing
@@ -1206,6 +1206,8 @@ gameScreen.prototype ={
                               //alert("reached1"+enemyArrayIndex);
                               //initialPositionX += 20;
                               //initialPositionY += 20;
+                         }else if (popedValue === 5){
+                              enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x + size / 20, mons_start_position_y + size / 20, home, 'tie', 5000, 50, 20, 1);
                          }
                          enemyArrayIndex++;
 
@@ -1294,7 +1296,7 @@ gameScreen.prototype ={
                     }
                     var player = window.sessionStorage.getItem("UserLevel");
                     if(player == "-1"){
-                        localStorage.setItem(localStorageName, stars.toString());
+                         localStorage.setItem(localStorageName, stars.toString());
                     }
                     game.state.start("LevelSelect");
                }
@@ -1754,26 +1756,19 @@ function getSideBarWidth(){
      return document.getElementById('game-side-bar').clientWidth+10;
 }
 
-
 var isCurrentMute = false;
 function resetMuteButton(){
      var muteButton = document.getElementById("game-control-span3");
      if(isCurrentMute){
           isCurrentMute = false;
           muteButton.className = "glyphicon glyphicon-volume-up";
-     }
-     else{
+     }else{
           isCurrentMute = true;
           muteButton.className = "glyphicon glyphicon-volume-off";
      }
 }
 
 document.getElementById("control-game-button3").addEventListener('click',function(){resetMuteButton();});
-
-
-
-
-
 /***********************************add by lead designer*****************************************/
 
 

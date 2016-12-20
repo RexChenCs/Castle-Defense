@@ -13,6 +13,17 @@ var window_width = window.innerWidth;
 var window_height = window.innerHeight;
 var mapName;
 
+//%%% new added
+// var startx;
+// var starty;
+// var endx;
+// var endy;
+// var formatedArray;
+// var movingPathReady;
+// var movingPath;
+// var easystar
+//%%% new added
+
 var mapBase = function(positionX, positionY, gameImage ,bgimage){
     this.positionX = positionX;
     this.positionY = positionY;
@@ -39,37 +50,37 @@ mapBase.prototype.setImage = function(gameImage){
 
 
 function MapBaseListener(){
-    this.param1.getImage().destroy();
+    //%%%% change here
     i = this.param1.getPosition()[0];
     j = this.param1.getPosition()[1];
-
-    if(selectedTower === 0) {
-        if(money>100) {
-            this.param1.setImage(new towerObj(numberOfTowers, 'eyetower', size, 20, 500, game, Bullets277, this.param1.getPosition()[0], this.param1.getPosition()[1], enemyArray, 500, this.param1, false));
-            this.param1.isTowerSet = true;
-            towerArray.push(this.param1.getImage());
-            numberOfTowers++;
-            money-=100;
-        }
-    }
 
     //******   add by Jun *****////
     // this below is for customize
 
     // 6 is start grid
-    else if (selectedTower === 6){
+    //%%%% change here
+    if (selectedTower === 6){
+        if (uniqueStart() === true){
 
-        this.param1 = new mapBase(this.param1.getPosition()[0], this.param1.getPosition()[1],game.add.image(this.param1.getPosition()[0], this.param1.getPosition()[1],'start'),'grid');
-        this.param1.getImage().scale.setTo(size/10/100,size/10/100);
-        this.param1.mapBaseBg.scale.setTo(size/10/100,size/10/100);
-        this.param1.getImage().inputEnabled = true;
-        this.param1.getImage().events.onInputDown.add(MapBaseListener, {param1: this.param1 , param2:this.param2});
-        defaultMap[this.param2] = 5;
+            this.param1.getImage().destroy();
+            this.param1 = new mapBase(this.param1.getPosition()[0], this.param1.getPosition()[1],game.add.image(this.param1.getPosition()[0], this.param1.getPosition()[1],'start'),'grid');
+            this.param1.getImage().scale.setTo(size/10/100,size/10/100);
+            this.param1.mapBaseBg.scale.setTo(size/10/100,size/10/100);
+            this.param1.getImage().inputEnabled = true;
+            this.param1.getImage().events.onInputDown.add(MapBaseListener, {param1: this.param1 , param2:this.param2});
+            defaultMap[this.param2] = 5;
+        }
+        else{
+            changeAlert(true,"You can only have one start");
+            showAlert();
+        }
 
 
     }
     // 7 is path
+    //%%%% change here
     else if (selectedTower === 7){
+        this.param1.getImage().destroy();
         this.param1 = new mapBase(this.param1.getPosition()[0], this.param1.getPosition()[1],game.add.image(this.param1.getPosition()[0], this.param1.getPosition()[1],'path'),'grid');
         this.param1.getImage().scale.setTo(size/10/100,size/10/100);
         this.param1.mapBaseBg.scale.setTo(size/10/100,size/10/100);
@@ -79,26 +90,29 @@ function MapBaseListener(){
     }
 
     // 8 is end
-
+    //%%%% change here
     else if (selectedTower === 8){
-
-        this.param1 = new mapBase(this.param1.getPosition()[0], this.param1.getPosition()[1],game.add.sprite(this.param1.getPosition()[0], this.param1.getPosition()[1],'home'),'grid');
-        this.param1.getImage().frame = 1;
-        this.param1.getImage().scale.setTo(size/10/400,size/10/400);
-        this.param1.mapBaseBg.scale.setTo(size/10/400,size/10/400);
-        this.param1.getImage().animations.add('homeAnimation',[0,1,2,3,4,5,6,7,8,9],10,true);
-        this.param1.getImage().animations.play('homeAnimation');
-        home = this.param1.getImage();
-        this.param1.getImage().inputEnabled = true;
-        this.param1.getImage().events.onInputDown.add(MapBaseListener, {param1: this.param1 , param2:this.param2});
-
-
-
-        defaultMap[this.param2] = 4;
+        if (uniqueEnd() === true){
+            this.param1.getImage().destroy();
+            this.param1 = new mapBase(this.param1.getPosition()[0], this.param1.getPosition()[1],game.add.sprite(this.param1.getPosition()[0], this.param1.getPosition()[1],'home'),'grid');
+            this.param1.getImage().frame = 1;
+            this.param1.getImage().scale.setTo(size/10/400,size/10/400);
+            this.param1.mapBaseBg.scale.setTo(size/10/400,size/10/400);
+            this.param1.getImage().animations.add('homeAnimation',[0,1,2,3,4,5,6,7,8,9],10,true);
+            this.param1.getImage().animations.play('homeAnimation');
+            home = this.param1.getImage();
+            this.param1.getImage().inputEnabled = true;
+            this.param1.getImage().events.onInputDown.add(MapBaseListener, {param1: this.param1 , param2:this.param2});
+            defaultMap[this.param2] = 4;
+        }
+        else{
+            changeAlert(true,"You can only have one end")
+            showAlert()
+        }
     }
-
+    //%%%% change here
     else if (selectedTower === 9){
-
+        this.param1.getImage().destroy();
         this.param1 = new mapBase(this.param1.getPosition()[0], this.param1.getPosition()[1],game.add.image(this.param1.getPosition()[0], this.param1.getPosition()[1],'grid'),'grid');
         this.param1.getImage().scale.setTo(size/10/100,size/10/100);
         this.param1.mapBaseBg.scale.setTo(size/10/100,size/10/100);
@@ -107,13 +121,79 @@ function MapBaseListener(){
         this.param1.getImage().events.onInputDown.add(MapBaseListener, {param1: this.param1 , param2:this.param2});
 
 
-        console.log(defaultMap);
+
 
     }
     //******   add by Jun *****////
 
 }
+//%%%%% new add %%%%//
+function uniqueStart() {
+    if (defaultMap.indexOf(5) != -1){
+        return false;
+    }
+    else
+        return true;
+}
 
+function uniqueEnd(){
+    if (defaultMap.indexOf(4) != -1){
+        return false;
+    }
+    else
+        return true;
+}
+
+function validateMap(){
+    movingPathReady = false;
+    movingPath = new Array();
+    formatedArray = formatTo2DArray(defaultMap);
+    easystar = new EasyStar.js();
+    easystar.setGrid(formatedArray);
+    easystar.setAcceptableTiles([1,4,5]);
+
+    easystar.findPath(starty, startx, endy, endx, function( path ) {
+        //alert("2q3qweqwd");
+        if (path === null) {
+            console.log("The path to the destinatio point was not found.");
+        } else {
+            //alert(path.length);
+            for (var i = 0; i < path.length; i++)
+            {
+                console.log("P: " + i + "X: " + path[i].x + "Y: " + path[i].y);
+                //pathFind.push([path[i].x ,path[i].y]);
+                var row = path[i].x;
+                var column = path[i].y;
+                var index = row*8+column;
+                var position = customizeMap[index].getPosition();
+                movingPath.push([position[1],position[0]]);
+
+            }
+            movingPath.reverse();
+            movingPathReady=true;
+            //alert("movingpath ready");
+
+        }
+        console.log("check 1 "  + movingPathReady)
+    });
+    setTimeout(null,5000);
+    easystar.calculate();
+    findingPath= movingPath.reverse();
+    console.log(movingPath);
+    console.log("validate movepath = " + movingPathReady)
+}
+
+function formatTo2DArray(array){
+
+    var newArr = [];
+    while(array.length) newArr.push(array.splice(0,8));
+
+    console.log(newArr);
+
+
+    return newArr;
+}
+//%%%%% new add %%%%//
 
 function actionOnClick () {
 
@@ -121,6 +201,13 @@ function actionOnClick () {
 
 }
 function saveAction(){
+    // validateMap()
+    // if(movingPathReady == true){
+    //     console.log("path ready")
+    // }
+    // else{
+    //     console.log ("not ready")
+    // }
     money = getCustomMoney();
     var content = JSON.stringify({Map : defaultMap, Monster: monsterStack, Money : money});
     mapName = getLevelName();
@@ -139,14 +226,14 @@ function loadLevel(levelname){
     resetmap();
     mapName = levelname;
     // change
-    firebase.database().ref('share/' + levelname).once('value').then(function(snapshot) {
-        var balance = snapshot.child("Balance").val();
-        var map = snapshot.child("Map").val();
-        var monster = snapshot.child("Monster").val();
-        var content = JSON.stringify({Map : map, Monster: monster, Money : balance});
-        //alert(content);
-        window.localStorage.setItem(mapName,content);
-    });
+    // firebase.database().ref('share/' + levelname).once('value').then(function(snapshot) {
+    //     var balance = snapshot.child("Balance").val();
+    //     var map = snapshot.child("Map").val();
+    //     var monster = snapshot.child("Monster").val();
+    //     var content = JSON.stringify({Map : map, Monster: monster, Money : balance});
+    //     //alert(content);
+    //     window.localStorage.setItem(mapName,content);
+    // });
     // change
     var temp = window.localStorage.getItem(levelname);
     var data = JSON.parse(temp);
@@ -194,6 +281,10 @@ function refreshMap(){
                 customizeMap[k].mapBaseBg.scale.setTo(size/10/100,size/10/100);
                 customizeMap[k].getImage().events.onInputDown.add(MapBaseListener, {param1: customizeMap[k] , param2:k});
 
+                //%%% new add
+                startx = Math.floor(k/8);
+                starty = k%8;
+                //%%% new add
             }else if(defaultMap[k]===4){
 
 
@@ -209,6 +300,11 @@ function refreshMap(){
                 home.body.immovable = false;
                 customizeMap[k].getImage().inputEnabled = true;
                 customizeMap[k].getImage().events.onInputDown.add(MapBaseListener, {param1: customizeMap[k] , param2:k});
+
+                //%%% new add
+                endx = Math.floor(k/8);
+                endy = k%8;
+                //%%% new add
 
             }
             k++;
@@ -440,7 +536,8 @@ document.getElementById("control-customize-button1").addEventListener('click',fu
         window.location.href ="/custPlay.html";
     }
     else{
-        alert("Please save first!");
+        changeAlert(true,"Please save first!");
+        showAlert()
     }
 
 });
@@ -503,14 +600,12 @@ function removeMonster(row){
         table.deleteRow(rowIndex);
     }
 }
-
-
 function removeAllRow(){
     var table = document.getElementById("selected-monster-table");
     var number = table.getElementsByTagName("tr").length;
     while(number>0){
-        table.deleteRow(0);
-        number = number-1;
+                table.deleteRow(0);
+                number = number-1;
     }
 }
 
@@ -522,7 +617,6 @@ function addMonsterUIForLoad(list){
         addMonsterUI(monstername[list[i]]);
     }
 }
-
 function shareMyWork(MapName,map,monster,balance){
     firebase.database().ref('share/'+MapName).set({Map : map, Monster : monster,Balance:balance});
 }

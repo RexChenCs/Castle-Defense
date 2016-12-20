@@ -32,13 +32,6 @@
     <!--all the custom css stylesheets-->
     <link rel="stylesheet" type="text/css" href="./css/stylesheet-splash.css">
     <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
-    <script src="./scripts/main.js"></script>
-    <script>
-        initFirebase();
-        updateUserInfo();
-        readShareLevel();
-        loadJsonData();
-    </script>
 </head>
 
 
@@ -69,6 +62,10 @@
 
 <script src="./scripts/main.js"></script>
 <script>
+    initFirebase();
+    updateUserInfo();
+    readShareLevel();
+    loadJsonData();
     var name = window.sessionStorage.getItem("UserName");
     document.getElementById("UserName").innerHTML=name;
 </script>
