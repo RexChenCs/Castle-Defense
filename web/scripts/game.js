@@ -1698,7 +1698,7 @@ function updateRemainingMonstersText(num){
 function backToChapter(){
      hideSideBar();
      game.paused = false;
-     window.location.href = "level.html"
+     window.location.href = "level.html";
      // game.state.start("LevelSelect");
 }
 document.getElementById("control-game-button2").addEventListener('click',backToChapter);
@@ -1753,6 +1753,26 @@ function enableXueyouTowerButton(){
 function getSideBarWidth(){
      return document.getElementById('game-side-bar').clientWidth+10;
 }
+
+
+var isCurrentMute = false;
+function resetMuteButton(){
+     var muteButton = document.getElementById("game-control-span3");
+     if(isCurrentMute){
+          isCurrentMute = false;
+          muteButton.className = "glyphicon glyphicon-volume-up";
+     }
+     else{
+          isCurrentMute = true;
+          muteButton.className = "glyphicon glyphicon-volume-off";
+     }
+}
+
+document.getElementById("control-game-button3").addEventListener('click',function(){resetMuteButton();});
+
+
+
+
 
 /***********************************add by lead designer*****************************************/
 

@@ -130,9 +130,9 @@ body{
 	font-family: 'Roboto';/*can use different font later*/
 	font-weight: bold;
 	font-size: 37px;
-	height: 65px;
-	width: 65px;
-	border-radius: 65px;
+	height: 63px;
+	width: 63px;
+	border-radius: 63px;
 }
 .top-status-container button:hover{
 	color: #7e909a;
@@ -142,9 +142,9 @@ body{
 		background: #B63436;
 		background-color: transparent;
 		font-size: 28px;
-		height: 55px;
-		width: 55px;
-		border-radius: 55px;
+		height: 50px;
+		width: 50px;
+		border-radius: 50px;
 	}
 }
 @media screen and (max-width: 900px){
@@ -152,9 +152,9 @@ body{
 		background: #B63436;
 		background-color: transparent;
 		font-size: 20px;
-		height: 45px;
-		width: 45px;
-		border-radius: 45px;
+		height: 40px;
+		width: 40px;
+		border-radius: 40px;
 	}
 }
 
