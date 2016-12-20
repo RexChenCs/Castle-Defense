@@ -154,6 +154,7 @@ function loadLevel(levelname){
     document.getElementById("money-text").innerHTML= money.toString();
     defaultMap = data.Map;
     monsterStack = data.Monster;
+    addMonsterUIForLoad(monsterStack);
     refreshMap();
 
 }
@@ -500,6 +501,25 @@ function removeMonster(row){
     if(table.rows.length>2){
         var rowIndex = row.rowIndex;
         table.deleteRow(rowIndex);
+    }
+}
+
+
+function removeAllRow(){
+    var table = document.getElementById("selected-monster-table");
+    var number = table.getElementsByTagName("tr").length;
+    while(number>0){
+        table.deleteRow(0);
+        number = number-1;
+    }
+}
+
+function addMonsterUIForLoad(list){
+    removeAllRow();
+    var i;
+    var monstername = ["Fei Lian","Red Boy","Huo Dou","Kirin","Mob","Ci Tie"];
+    for(i = 0; i<list.length; i++){
+        addMonsterUI(monstername[list[i]]);
     }
 }
 
