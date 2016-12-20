@@ -1313,11 +1313,11 @@ function resetControlGameButton1(){
 function clickTowerButton(num){
     selectedTower = num;
 }
-document.getElementById("eye-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Eye","1","1","1");});
-document.getElementById("xueyou-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Xueyou","2","2","2");});
-document.getElementById("java-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Java","3","3","3");});
-document.getElementById("fan-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Fan","4","4","4");});
-document.getElementById("gear-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Gear","5","5","5");});
+document.getElementById("eye-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Eye","20","500","None");});
+document.getElementById("xueyou-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Xueyou","40","1000","None");});
+document.getElementById("java-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Java","100","400","None");});
+document.getElementById("fan-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Fan","20","0","-45% Movement");});
+document.getElementById("gear-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Gear","20","0","HP Regen");});
 document.getElementById("eye-tower-button").addEventListener('click',function(){clickTowerButton(1);});
 document.getElementById("xueyou-tower-button").addEventListener('click',function(){clickTowerButton(2);});
 document.getElementById("java-tower-button").addEventListener('click',function(){clickTowerButton(3);});
