@@ -35,6 +35,11 @@
         initFirebase();
     </script>
     <link rel="stylesheet" type="text/css" href="./css/stylesheet-level.css">
+    <!--ADD by liwen-->
+    <!--ADD by liwen-->
+    <script src="/scripts/sidenav.js"></script>
+    <!--ADD by liwen-->
+    <!--ADD by liwen-->
 </head>
 <body>
 <audio id="btn_press">
@@ -43,6 +48,14 @@
 <audio id="btn_click">
     <source src="/sounds/btn_click.mp3" type="audio/mpeg">
 </audio>
+<!--ADD by liwen-->
+<!--ADD by liwen-->
+
+<audio id="music2" autoplay loop>
+    <source src="/sounds/mini - two of us.mp3" type="audio/mp3">
+</audio>
+<!--ADD by liwen-->
+<!--ADD by liwen-->
 <div id="game-side-bar">
     <section class="sidebar-super-container">
 
@@ -62,7 +75,7 @@
                 <table>
                     <tr>
                         <td><button type="button" id="control-game-button1" class="control-game-button" data-toggle="tooltip" data-placement="bottom" title="Pause/Continue"><span id="game-control-span1" class="glyphicon glyphicon-pause"></span></button></td>
-                        <td><button type="button" id="control-game-button3" class="control-game-button" data-toggle="tooltip" data-placement="bottom" title="Mute/Unmute"><span id="game-control-span3" class="glyphicon glyphicon-volume-up"></span></button></td>
+                        <td><button type="button" onclick="setVolume2()" id="control-game-button3" class="control-game-button" data-toggle="tooltip" data-placement="bottom" title="Mute/Unmute"><span id="game-control-span3" class="glyphicon glyphicon-volume-up"></span></button></td>
                         <td><button type="button" id="control-game-button2" class="control-game-button" data-toggle="tooltip" data-placement="bottom" title="Chapter"><span class="glyphicon glyphicon-log-out"></span></button></td>
                     </tr>
                 </table>

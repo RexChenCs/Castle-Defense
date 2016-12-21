@@ -296,23 +296,6 @@ eliteMonster.prototype.update = function() {
     }
 
 
-// //the monster's moving algorithm
-//      if(this.monster.body.velocity.x === 0){
-//           //alert("enter this clause");
-//           this.monster.body.velocity.x +=this.speed/10;
-//           if(this.monster.body.velocity.y<this.speed) {
-//                this.monster.body.velocity.y += this.speed / 10;
-//           }
-//      }else if(this.monster.body.velocity.y === 0){
-//           if(this.monster.body.velocity.x<this.speed) {
-//                this.monster.body.velocity.x += this.speed / 10;
-//           }
-//           this.monster.body.velocity.y +=this.speed/10;
-//      }else if(this.monster.body.velocity.x < this.speed){
-//           this.monster.body.velocity.x +=this.speed/10;
-//      }else if(this.monster.body.velocity.y < this.speed){
-//           this.monster.body.velocity.y +=this.speed/10;
-//      }
 
     if(this.currentMovetoX === 0 && this.currentMovetoY ===0 ){
         var position_array = this.pathFinding.pop();
@@ -336,12 +319,6 @@ eliteMonster.prototype.update = function() {
     }
 
     console.log("id"+this.monster.name+"moveto "+this.currentMovetoX +" "+this.currentMovetoY);
-
-    //console.log( "body " + this.monster.body.x +" "+ (this.monster.body.y+this.monster.height/2) );
-    //console.log( this.monster.height);
-
-    // if(game.physics.arcade.distanceToXY(this.monster,this.currentMovetoX,this.currentMovetoY)===0) {
-    //console.log("distance " + game.physics.arcade.distanceToXY(this.monster,this.currentMovetoX,this.currentMovetoY));
 
     this.distanceToTarget  = game.physics.arcade.distanceToXY(this.monster,this.currentMovetoX,this.currentMovetoY);
 
@@ -453,12 +430,6 @@ function enemyReachDestination(somethong, monster){
     game.input.onDown.add(removeLogo2, this);
 
 
-    /*
-     game.paused = true;
-     game.input.onDown.add(removeLogo1, this);
-     game.state.start("LevelSelect");          }
-     //game.paused = false;
-     */
 
 }
 
@@ -606,12 +577,12 @@ function removeLogo2 () {
 }
 //the listener for the mapbase, click on the mapbase puts tower on the mapbase
 function MapBaseListener(){
-    this.param1.getImage().destroy();
     i = this.param1.getPosition()[0];
     j = this.param1.getPosition()[1];
 
     if(selectedTower === 0) {
         if(money>=100) {
+            this.param1.getImage().destroy();
             this.param1.setImage(new towerObj(numberOfTowers, 'eyetower', size, 20, 500, game, Bullets277, this.param1.getPosition()[0], this.param1.getPosition()[1], enemyArray, 500, this.param1, false));
             this.param1.isTowerSet = true;
             towerArray.push(this.param1.getImage());
@@ -620,6 +591,7 @@ function MapBaseListener(){
         }
     }else if(selectedTower === 1){
         if(money>=100) {
+            this.param1.getImage().destroy();
             this.param1.setImage(new towerObj(numberOfTowers, 'eyetower', size, 20, 500, game, Bullets277, this.param1.getPosition()[0], this.param1.getPosition()[1], enemyArray, 500, this.param1, false));
             this.param1.isTowerSet = true;
             towerArray.push(this.param1.getImage());
@@ -628,6 +600,7 @@ function MapBaseListener(){
         }
     }else if(selectedTower === 2){
         if(money>=150) {
+            this.param1.getImage().destroy();
             this.param1.setImage(new towerObj(numberOfTowers, 'xueyoutower', size, 40, 1000, game, Bullets224, this.param1.getPosition()[0], this.param1.getPosition()[1], enemyArray, 300, this.param1, false));
             this.param1.isTowerSet = true;
             towerArray.push(this.param1.getImage());
@@ -636,6 +609,7 @@ function MapBaseListener(){
         }
     }else if(selectedTower === 3) {
         if(money>=80) {
+            this.param1.getImage().destroy();
             this.param1.setImage(new towerObj(numberOfTowers, 'javatower', size, 100, 400, game, Bullets74, this.param1.getPosition()[0], this.param1.getPosition()[1], enemyArray, 800, this.param1, false));
             this.param1.isTowerSet = true;
             towerArray.push(this.param1.getImage());
@@ -644,6 +618,7 @@ function MapBaseListener(){
         }
     }else if(selectedTower === 4){
         if(money>=200) {
+            this.param1.getImage().destroy();
             this.param1.setImage(new towerObj(numberOfTowers, 'fantower', size, 20, 400, game, windBullets, this.param1.getPosition()[0], this.param1.getPosition()[1], enemyArray, 800, this.param1, false));
             this.param1.isTowerSet = true;
             towerArray.push(this.param1.getImage());
@@ -652,6 +627,7 @@ function MapBaseListener(){
         }
     }else if(selectedTower === 5){
         if(money>=120) {
+            this.param1.getImage().destroy();
             this.param1.setImage(new towerObj(numberOfTowers, 'geartower', size, 30, 3000, game, healingBullets, this.param1.getPosition()[0], this.param1.getPosition()[1], enemyArray, 4000, this.param1, true));
             this.param1.isTowerSet = true;
             towerArray.push(this.param1.getImage());
@@ -853,18 +829,6 @@ gameScreen.prototype ={
         console.log("q23sdfsdf"+formatedArray);
 
         var easystar = new EasyStar.js();
-        //var level =[[5,0,0,0,0,0,0,0],[1,1,1,0,0,0,0,0],[0,0,1,1,1,0,0,0],[0,0,0,1,1,0,0,0],[0,0,0,0,1,1,0,0],[0,0,0,0,0,1,0,0],[0,0,0,0,0,1,0,0],[0,0,0,0,0,1,1,4]];
-
-        var level = [0,1,0,0,0,0,0,0,
-            1,1,1,0,0,1,1,1,
-            1,0,1,1,0,1,0,1,
-            1,0,0,1,0,1,0,1,
-            1,1,0,1,0,1,0,1,
-            0,1,0,1,0,1,0,1,
-            0,1,0,1,1,1,0,4,
-            0,5,0,0,0,0,0,0];
-
-
 
 
         console.log(formatedArray);
@@ -903,21 +867,6 @@ gameScreen.prototype ={
 
         easystar.calculate();
 
-        //console.log("pathfind"+pathFind);
-        /*
-         alert("thiew"+pathFind.length);
-         for(i =0;i<pathFind.length;i++){
-         var row = pathFind[i][0];
-         var column = pathFind[i][1];
-         console.log("row"+row);
-         console.log("column"+column);
-         var index = row*8+column;
-
-         var position = mapBaseArray[index].getPosition();
-         movingPath.push[position];
-         }
-
-         */
         findingPath= movingPath.reverse();
 
 
@@ -949,23 +898,6 @@ gameScreen.prototype ={
         lowerBound.body.immovable = true;
 
 
-        /*
-         towerButton1 = game.add.button(size/20*19, size/3, 'eyetowerButton', actionOnClick, {param1:1}, 0, 0, 0);
-
-         towerButton2 = game.add.button(size/20*19 , size/3+150, 'xueyoutowerButton', actionOnClick, {param1:2}, 0, 0, 0);
-
-         towerButton3 = game.add.button(size/20*19, size/3+300, 'javatowerButton', actionOnClick, {param1:3}, 0, 0, 0);
-
-         towerButton4 = game.add.button(window.innerWidth - 250,size/2+150, 'windtowerButton', actionOnClick, {param1:4}, 0, 0, 0);
-
-         towerButton5 = game.add.button(size/20*19, size/2+300, 'geartowerButton', actionOnClick, {param1:5}, 0, 0, 0);
-
-         towerButton1.scale.setTo(1,1);
-         towerButton2.scale.setTo(1,1);
-         towerButton3.scale.setTo(1,1);
-         towerButton4.scale.setTo(1,1);
-         towerButton5.scale.setTo(1,1);
-         */
         //create a game timer
         timer = game.time.create(false);
         //start the game timer
@@ -1066,13 +998,6 @@ gameScreen.prototype ={
             healingAnimation.scale.setTo(size/10/300,size/10/300);
             healingAnimation.animations.add('healing');
         }
-
-
-
-        /*Edit by Liwen Fan*/
-        //var mons_start = game.add.sprite(window.innerHeight/2,window.innerHeight/2,'mons_start');
-        // mons_start.anchor.setTo(0.5,0.5);
-        // mons_start.scale.setTo(0.5,0.5);
 
 
 
@@ -1219,15 +1144,6 @@ gameScreen.prototype ={
                 }
             }
 
-            /*
-             if(enemyArray[i].moveTo != null ) {
-             alert("enter the moveTo != null");
-
-             game.physics.arcade.overlap( enemyArray[i].moveTo,enemyArray[i].monster,  monsterReach , null, this);
-
-             }
-             */
-
         }
 
 
@@ -1278,18 +1194,11 @@ gameScreen.prototype ={
 }
 
 
-
-
 /***********************************add by lead designer*****************************************/
 //var isGameStarted = false;
 //var isGameStop = false;
 function controlGameButton1(){
-    /*if(!isGameStarted){
-     document.getElementById("game-control-span1").className = "glyphicon glyphicon-pause";
-     document.getElementById("game-control-span2").innerHTML="Stop The Game";
-     isGameStarted = true;
-     }
-     else{*/
+
     if(!game.paused){
         document.getElementById("game-control-span1").className = "glyphicon glyphicon-play";
         //document.getElementById("game-control-span1").setAttribute("title", "Continue");

@@ -220,6 +220,8 @@ function saveAction(){
     }
     //change
     window.localStorage.setItem(mapName,content);
+    changeAlert(false,"save success");
+    showAlert();
 }
 
 function loadLevel(levelname){

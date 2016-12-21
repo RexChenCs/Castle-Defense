@@ -28,6 +28,7 @@ function playAudio(btn,type) {
     }
 }
 
+/*set up google login config*/
 function start() {
     gapi.load('auth2', function() {
         auth2 = gapi.auth2.init({
@@ -41,11 +42,13 @@ function start() {
 function signInCallback(authResult) {
 
     if (authResult['code']) {
-        //add new
+        /*change button for login process sucessful*/
         document.getElementById("guestbtn").style.display="none";
         document.getElementById('signinButton').innerHTML = "Enter and Play";
-        // get user information and send it is url
+        /* get user information and send it is url*/
         var profile = auth2.currentUser.get().getBasicProfile();
+
+        /* store user info into storage*/
         window.sessionStorage.setItem("auth","1");
         window.sessionStorage.setItem("UserLevel","1");
         window.sessionStorage.setItem("UserId",profile.getId());
@@ -64,6 +67,7 @@ function loadJsonData() {
     if(window.sessionStorage.getItem("MyData") === null){
         loadData(dataFile);
     }
+    /*Json data to storage*/
     function loadData(jsonFile) {
         $.getJSON(jsonFile, function (json) {
             window.sessionStorage.setItem("MyData", JSON.stringify(json));
@@ -73,6 +77,7 @@ function loadJsonData() {
 
 /*create guest infomation and login transition*/
 function guestLogin() {
+    /* default case, auth = 0 for guest, and change to 1 to google player*/
     window.sessionStorage.setItem("auth","0");
     window.sessionStorage.setItem("UserLevel", "-1");
     window.sessionStorage.setItem("UserId", "Guest");
@@ -101,7 +106,7 @@ function initFirebase(){
 /*update google user info*/
 function updateUserInfo(){
     var auth = window.sessionStorage.getItem("auth");
-    /*if google user update info*/
+    /*if google user update info and write it to DB*/
     if(auth == "1"){
         var id = window.sessionStorage.getItem("UserId");
         firebase.database().ref('user/' + id).once('value').then(function(snapshot) {
@@ -127,26 +132,27 @@ function readShareLevel(){
                 var key = childSnapshot.key;
                 cusName = cusName+key + ",";
                 window.sessionStorage.setItem("cusName",cusName);
-                //childData will be the actual contents of the child
+                //childData will be the actual contents of the child, and load cus level info to storage
                 var Data = childSnapshot;
                 var balance = Data.child("Balance").val();
                 var map = Data.child("Map").val();
                 var monster = Data.child("Monster").val();
                 var content = JSON.stringify({Map : map, Monster: monster, Money : balance});
-                //alert(content);
                 window.localStorage.setItem(key,content);
             });
         });
 }
 
+/*write user info into DB for first time login player */
 function writeUserData(userId, name, level) {
-
     firebase.database().ref('user/'+userId).set({ Name : name, Level : level});
-
 }
 
+/* set up user level for google login player*/
 function UpdateUserLevel(){
+    /* get user type from storage*/
     var auth = window.sessionStorage.getItem("auth");
+    /*if google user login, set up user info to storage for control*/
     if(auth =="1"){
         var userId = window.sessionStorage.getItem("UserId");
         var level = window.sessionStorage.getItem("UserLevel");
