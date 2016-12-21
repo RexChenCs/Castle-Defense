@@ -693,22 +693,48 @@ function getSideBarWidth(){
 
 
 
-var alert = document.getElementById("alert-normal");
+var alert1 = document.getElementById("alert-normal");
 function hideAlert(){
-    alert.style.display="none";
+    alert1.style.display="none";
 }
 function showAlert(){
-    alert.style.display="inline-block";
+    alert1.style.display="inline-block";
     setTimeout("hideAlert()",3000);
 }
 function changeAlert(isDanger,text){
     if(isDanger){
-        alert.className="alert alert-danger";
+        alert1.className="alert alert-danger";
     }
     else{
-        alert.className="alert alert-success";
+        alert1.className="alert alert-success";
     }
-    alert.innerHTML = text;
+    alert1.innerHTML = text;
 }
 document.getElementById("control-customize-button2").addEventListener('click',function(){showAlert();});
+
+
+
+
+function searchLevel(){
+    var text = document.getElementById("search-box").value.toLowerCase();
+    var table = document.getElementById("custom-level-table");
+    var number = table.getElementsByTagName("tr").length;
+    while(number>0){
+        table.deleteRow(0);
+        number = number-1;
+    }
+    levelCount = 0;
+    row = null;
+    var cus =  window.sessionStorage.getItem("cusName");
+    var cusName = cus.substr(0, cus.length - 1);
+    var cusNameList = cusName.split(",");
+    var i;
+    for(i = 0; i<cusNameList.length; i++){
+        var text2 = cusNameList[i].toLowerCase();
+        if(text2.indexOf(text)>=0){
+            addCustomLevel(cusNameList[i]);
+        }
+    }
+}
+document.getElementById("search-box").addEventListener('input',function(){searchLevel();});
 /***********************************add by lead designer****************************************/
