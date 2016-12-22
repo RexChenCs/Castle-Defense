@@ -1289,6 +1289,7 @@ playGame.prototype = {
      preload: function(){
           /*data set show the level side bar*/
           showLevelSideBar();
+          showTopBar();
           // level thumbnail
           game.load.spritesheet("levelthumb", "img/level_lock.png", 60, 60);
           // level pages at the bottom
@@ -1444,6 +1445,7 @@ playGame.prototype = {
                                    monsterLoadArray = monsterArray[level];
                                    gameIndexArray = MapArray[level];
                                    hideLevelSideBar();
+                                   hideTopBar();
                                    /***********data set*************/
                                    game.state.start("gameScreen");
                               }
@@ -1737,7 +1739,12 @@ function resetMuteButton(){
           muteButton.className = "glyphicon glyphicon-volume-off";
      }
 }
-
+function showTopBar(){
+     document.getElementById("game-title-container").style.display="block";
+}
+function hideRopBar(){
+     document.getElementById("game-title-container").style.display="none";
+}
 document.getElementById("control-game-button3").addEventListener('click',function(){resetMuteButton();});
 /***********************************add by lead designer*****************************************/
 

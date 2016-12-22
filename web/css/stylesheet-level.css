@@ -347,7 +347,7 @@ body{
 	padding: 0;
 	border: 0;
 	height: 53px;
-	width: 150px;
+	width: 160px;
 	margin: 10px 10px 10px 10px;
 	display: inline-block;
 	border-radius: 0px 0px 0px 0px;
@@ -369,7 +369,7 @@ body{
 @media screen and (max-width: 1200px){
 	#level-button-container button{
 		height: 43px;
-		width: 140px;
+		width: 150px;
 		margin: 7px 7px 7px 7px;
 		font-size: 16px;
 	}
@@ -378,7 +378,7 @@ body{
 @media screen and (max-width: 900px){
 	#level-button-container button{
 		height: 35px;
-		width: 100px;
+		width: 110px;
 		margin: 5px 5px 5px 5px;
 		font-size: 14px;
 	}
@@ -387,8 +387,8 @@ body{
 @media screen and (max-width: 550px){
 	#level-button-container button{
 		height: 28px;
-		width: 73px;
-		margin: 0px 0px 0px 0px;
+		width: 82px;
+		margin: 5px 5px 5px 5px;
 		font-size: 10px;
 	}
 }
