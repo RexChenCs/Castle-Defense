@@ -222,11 +222,29 @@ body{
 	font-size: 18px;
 	font-weight: bold;
 }
+.tower-button-list button.quit-button{
+	color: white;
+	width: 82px;
+	height: 105px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 0px 0px 0px 0px;
+	background: #B63436;
+	/*font*/
+	font-family: 'Roboto';/*can use different font later*/
+	font-size: 22px;
+	font-weight: bold;
+}
 .tower-button-list div{
 	padding: 2px 0px 2px 0px;
 }
 .tower-button-list button:hover{
 	background: #7e909a;
+	color: white;
+}
+.tower-button-list button.quit-button:hover{
+	background: #cd4c4e;
 	color: white;
 }
 
@@ -252,6 +270,11 @@ body{
 	.tower-button-list div{
 		padding: 0px 0px 0px 0px;
 	}
+	.tower-button-list button.quit-button{
+		width: 63px;
+		height: 80px;
+		font-size: 19px;
+	}
 }
 
 
@@ -276,6 +299,11 @@ body{
 	}
 	.tower-button-list div{
 		padding: 0px 0px 0px 0px;
+	}
+	.tower-button-list button.quit-button{
+		width: 50px;
+		height: 64px;
+		font-size: 16px;
 	}
 }
 
