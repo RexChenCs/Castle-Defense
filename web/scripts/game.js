@@ -1288,8 +1288,8 @@ var playGame = function(game){};
 playGame.prototype = {
      preload: function(){
           /*data set show the level side bar*/
-          showLevelSideBar();
           showTopBar();
+          showLevelSideBar();
           // level thumbnail
           game.load.spritesheet("levelthumb", "img/level_lock.png", 60, 60);
           // level pages at the bottom
@@ -1740,10 +1740,10 @@ function resetMuteButton(){
      }
 }
 function showTopBar(){
-     document.getElementById("game-title-container").style.display="block";
+     document.getElementById("top-title-bar").style.display="block";
 }
-function hideRopBar(){
-     document.getElementById("game-title-container").style.display="none";
+function hideTopBar(){
+     document.getElementById("top-title-bar").style.display="none";
 }
 document.getElementById("control-game-button3").addEventListener('click',function(){resetMuteButton();});
 /***********************************add by lead designer*****************************************/
