@@ -62,29 +62,29 @@
                 this[i] = ' '
             }
         }
-        image = new ImageArray(8)
-        link = new ImageArray(8)
-        image[0] = 'aw.png'
-        image[1] = 'ca.png'
-        image[2]='int.png'
-        image[3] = 'purp.png'
-        image[4] = 'sal.png'
-        image[5] = 'sc.png'
-        image[6] = 'wis.png'
-        image[7]='jet.png'
+        image = new ImageArray(8);
+        link = new ImageArray(8);
+        image[0] = 'aw.png';
+        image[1] = 'ca.png';
+        image[2]='int.png';
+        image[3] = 'purp.png';
+        image[4] = 'sal.png';
+        image[5] = 'sc.png';
+        image[6] = 'wis.png';
+        image[7]='jet.png';
 
-        link[0]='awesome-life-game.appspot.com'
-        link[1]='canary-life.firebaseapp.com'
-        link[2]='ikb-life.firebaseapp.com'
-        link[3]='purplelifegame.firebaseapp.com'
-        link[4]='salmon-life.firebaseapp.com'
-        link[5]='the-scarlet-life.appspot.com'
-        link[6]='wisteria-life.appspot.com'
-        link[7]='jet-life.firebaseapp.com'
+        link[0]='awesome-life-game.appspot.com';
+        link[1]='canary-life.firebaseapp.com';
+        link[2]='ikb-life.firebaseapp.com';
+        link[3]='purplelifegame.firebaseapp.com';
+        link[4]='salmon-life.firebaseapp.com';
+        link[5]='the-scarlet-life.appspot.com';
+        link[6]='wisteria-life.appspot.com';
+        link[7]='jet-life.firebaseapp.com';
 
-        var rand = 60/image.length
+        var rand = 60/image.length;
         function randomimage() {
-            image_number = Math.floor(Math.random() * 6)
+            image_number = Math.floor(Math.random() * 6);
             return(image_number)
         }
         var image1 = image[randomimage()];

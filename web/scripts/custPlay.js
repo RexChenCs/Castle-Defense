@@ -558,7 +558,7 @@ function removeLogo1 () {
     winner.kill();
     game.paused = false;
     last_spawn_time = game.time.time;
-    window.location.href = "custPlay.html"
+    window.location.href = "customize.html";
 
     //*************************data set ***************************************
 
@@ -572,7 +572,7 @@ function removeLogo2 () {
     lose.kill();
     game.paused = false;
     last_spawn_time = game.time.time;
-    window.location.href = "custPlay.html"
+    window.location.href = "customize.html";
 
 
 }
@@ -681,7 +681,7 @@ function MapBaseListener(){
 window.onload = function() {
     // creating a 320x480 pixels game and executing PlayGame state
     game = new Phaser.Game(window_width, window_height, Phaser.AUTO, "");
-    showSideBar()
+    showSideBar();
 
     game.state.add("gameScreen", gameScreen);
     game.state.start("gameScreen");
@@ -758,7 +758,7 @@ gameScreen.prototype ={
 
         //  A simple background for our game
         var bg = game.add.sprite(0, 0, 'background');
-        bg.scale.setTo(window.innerWidth/1800,window.innerHeight/1199)
+        bg.scale.setTo(window.innerWidth/1800,window.innerHeight/1199);
         var boardBg = game.add.sprite(size/20*2,size/20*2,'high_way');
         boardBg.scale.setTo(size/20*16/1000,size/20*16/1000);
 
@@ -1175,7 +1175,7 @@ gameScreen.prototype ={
 
         if(monsterLoadArray.length===0){
             if(aliveenemy===0){
-                winner = game.add.sprite(window.innerWidth/2,window.innerHeight/2, 'victory')
+                winner = game.add.sprite(window.innerWidth/2,window.innerHeight/2, 'victory');
                 winner.anchor.setTo(0.5,0.5);
                 game.paused = true;
                 game.input.onDown.add(removeLogo1, this);
@@ -1343,7 +1343,7 @@ function formatTo2DArray(array){
     var newArr = [];
     while(array.length) newArr.push(array.splice(0,8));
 
-    console.log(newArr)
+    console.log(newArr);
 
 
     return newArr;

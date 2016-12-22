@@ -597,11 +597,11 @@ function removeLogo1 () {
      last_spawn_time = game.time.time;
 
      //***********************data set*****************************************
-     var MaxLevel = window.sessionStorage.getItem("UserLevel");
-     var CurrentLevel = (level+2).toString();
+     var MaxLevel = parseInt(window.sessionStorage.getItem("UserLevel"));
+     var CurrentLevel = (level+2);
      /*check if next level greater than maxlevel, if so, update*/
-     if(CurrentLevel > MaxLevel && MaxLevel != "-1"){
-          window.sessionStorage.setItem("UserLevel",CurrentLevel);
+     if(CurrentLevel > MaxLevel && MaxLevel !== -1){
+          window.sessionStorage.setItem("UserLevel",CurrentLevel.toString());
           var Id = window.sessionStorage.getItem("UserId");
           var Name = window.sessionStorage.getItem("UserName");
           // firebase.database().ref('user/'+Id).update({Level : CurrentLevel});
@@ -1505,7 +1505,7 @@ playGame.prototype = {
                          this.pageSelectors[k].height = 15;
                     }
                }
-               this.pageText.text = "Swipe to select level page (" + (this.currentPage + 1).toString() + " / " + colors.length + ")";
+               // this.pageText.text = "Swipe to select level page (" + (this.currentPage + 1).toString() + " / " + colors.length + ")";
 
                var tween = game.add.tween(this.scrollingMap).to({
                     x: this.currentPage * -game.width

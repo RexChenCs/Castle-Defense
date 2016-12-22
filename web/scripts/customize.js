@@ -201,9 +201,9 @@ function actionOnClick () {
 function saveAction(){
     var id = window.sessionStorage.getItem("UserId");
     var username = window.sessionStorage.getItem("UserName");
-    var money = getCustomMoney();
+    money = getCustomMoney();
     var content = JSON.stringify({Id: id, Name: username, Map : defaultMap, Monster: monsterStack, Money : money});
-    var mapName = getLevelName();
+    mapName = getLevelName();
     var Id = window.sessionStorage.getItem("UserId");
     var Name = window.sessionStorage.getItem("UserName");
     if(Id === "Guest"){
