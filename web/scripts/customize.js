@@ -634,18 +634,28 @@ document.getElementById("mob-button").addEventListener('click',function(){addMon
 
 var levelCount = 0;
 var row = null;
-function addCustomLevel(name){
+function addCustomLevel(name,author){
     var table = document.getElementById("custom-level-table");
     if(levelCount%6==0){
         row = table.insertRow(-1);
     }
     var col1 = row.insertCell(levelCount%6);
     levelCount = levelCount+1;
+    var col3 = row.insertCell(levelCount%6);
+    levelCount = levelCount+1;
     var col2 = row.insertCell(levelCount%6);
     levelCount = levelCount+1;
     col1.className = "load-td1";
+    col3.className = "load-td1";
     col2.className = "load-td2";
-    col1.innerHTML = name;
+    var span1 = document.createElement("SPAN");
+    var span2 = document.createElement("SPAN");
+    span1.className = "load-span1";
+    span1.innerHTML = name;
+    span2.className = "load-span2";
+    span2.innerHTML = "Created By "+author;
+    col1.appendChild(span1);
+    col3.appendChild(span2);
     var button = document.createElement("BUTTON");
 
     button.addEventListener('click',function(){loadLevel(name);});
@@ -665,9 +675,10 @@ function addCustomLevelCaller(){
     var cus =  window.sessionStorage.getItem("cusName");
     var cusName = cus.substr(0, cus.length - 1);
     var cusNameList = cusName.split(",");
+    var b = ["11","22","dd","ss","ff","dd","ss","ff","dd","ss","ff","dd"];
     var i;
     for(i = 0; i<cusNameList.length; i++){
-        addCustomLevel(cusNameList[i]);
+        addCustomLevel(cusNameList[i],b[i]);
     }
 }
 document.getElementById("control-customize-button3").addEventListener('click',function(){addCustomLevelCaller();});
