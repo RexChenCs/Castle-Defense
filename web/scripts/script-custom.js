@@ -2,6 +2,7 @@
  * Created by Rex on 12/5/16.
  */
 $(document).ready(function(){
+    $('#help-popup').modal('show');
     var all_tooltip = $('[data-toggle="tooltip"]');
     var game_control1 = $("#control-customize-button1");
     var game_control2 = $("#control-customize-button2");

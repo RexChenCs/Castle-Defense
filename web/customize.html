@@ -80,6 +80,8 @@
                     <tr>
                         <td><button type="button" id="control-customize-button1" class="control-customize-button" data-toggle="tooltip" data-placement="bottom" title="Play"><span class="glyphicon glyphicon-play-circle"></span></button></td>
                         <td><button type="button" class="control-customize-button" data-toggle="modal" data-target="#save-popup"><span class="glyphicon glyphicon-floppy-disk" data-toggle="tooltip" title="Save" data-placement="bottom"></span></button></td>
+                        <td><button type="button" class="control-customize-button" data-toggle="modal" data-target="#help-popup"><span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Help" data-placement="bottom"></span></button></td>
+                        <!-- <td><button type="button" id="control-customize-button4" class="control-customize-button" data-toggle="tooltip" data-placement="bottom" title="Quit"><span class="glyphicon glyphicon-log-out"></span></button></td> -->
 
                     </tr>
                 </table>
@@ -134,6 +136,59 @@
         </div>
     </center>
 </div>
+<div class="modal fade" id="help-popup" role="dialog">
+    <div class="close-select-monster-container"><button data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button></div>
+    <center>
+        <div class="help-table-container">
+        <table>
+            <tr>
+                <td>Plus/Minus sign</td>
+                <td>You can increase and decrese your money by click plus/minus sign</td>
+            </tr>
+            <tr>
+                <td>Path</td>
+                <td>You can place path on the map, monsters would follow your path to attack</td>
+            </tr>
+            <tr>
+                <td>Origin</td>
+                <td>You can place a spawning point on map.Caution you can only have one origin</td>
+            </tr>
+            <tr>
+                <td>End</td>
+                <td>You can place the cat house on the map, once monsters reach the cat house you lost the game.</td>
+            </tr>
+            <tr>
+                <td>Select Monster</td>
+                <td>Click on this button, you would get a pop-up window to choose your enemies</td>
+            </tr>
+            <tr>
+                <td>All Custom Levels</td>
+                <td>Click on this button, you would get a pop-up window to explore other player’s game</td>
+            </tr>
+            <tr>
+                <td>My Custom Levels</td>
+                <td>To view all the games you have made before</td>
+            </tr>
+            <tr>
+                <td>Quit</td>
+                <td>Back to game splash</td>
+            </tr>
+            <tr>
+                <td>Play Icon</td>
+                <td>Before clicking on this icon to play the game, don’t forget to use save button to save your masterpiece</td>
+            </tr>
+            <tr>
+                <td>Save Icon</td>
+                <td>Save your work</td>
+            </tr>
+            <tr>
+                <td>Information Icon</td>
+                <td>To display this information again</td>
+            </tr>
+        </table>
+        </div>
+    </center>
+</div>
 <div class="modal fade" id="load-popup" role="dialog">
     <div class="close-select-monster-container"><button data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button></div>
     <div class="load-container">
@@ -149,7 +204,16 @@
         </center>
     </div>
 </div>
-
+<!-- <div class="modal fade" id="load-popup" role="dialog">
+    <div class="close-select-monster-container"><button data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button></div>
+    <center>
+        <div class="load-container form-group">
+            <div>Please provide a unique name</div>
+            <input id="mapname" type="text" class="form-control" value="Level Name">
+            <button data-dismiss="modal" id="control-customize-button5">Load</button>
+        </div>
+    </center>
+</div> -->
 
 <!--jQuery and Bootstrap scripts-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

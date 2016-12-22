@@ -900,3 +900,32 @@ button.all-custom-button:hover{
 .all-custom-button .glyphicon{
     padding-right: 10px;
 }
+
+
+/*******help*******/
+#help-popup{
+    background: rgba(67, 80, 86, 0.5);
+}
+#select-monsters-popup{
+    background: rgba(67, 80, 86, 0.5);
+}
+#save-popup{
+    background: rgba(67, 80, 86, 0.5);
+}
+#load-popup{
+    background: rgba(67, 80, 86, 0.5);
+}
+.help-table-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.help-table-container table td{
+    color: white;
+    padding: 7px;
+    /*font*/
+    font-family: 'Roboto';/*can use different font later*/
+    font-weight: bold;
+    font-size: 19px;
+}
