@@ -663,7 +663,9 @@ function addCustomLevel(name,author){
     button.setAttribute("data-dismiss", "modal");
     col2.appendChild(button);
 }
-function addCustomLevelCaller(){
+var isMyLevelGlobal = false;
+function addCustomLevelCaller(isMyLevel){
+    document.getElementById("search-box").value = "";
     var table = document.getElementById("custom-level-table");
     var number = table.getElementsByTagName("tr").length;
     while(number>0){
@@ -672,17 +674,34 @@ function addCustomLevelCaller(){
     }
     levelCount = 0;
     row = null;
-    var cus =  window.sessionStorage.getItem("cusName");
-    var cusName = cus.substr(0, cus.length - 1);
-    var cusNameList = cusName.split(",");
-    var b = ["11","22","dd","ss","ff","dd","ss","ff","dd","ss","ff","dd"];
-    var i;
-    for(i = 0; i<cusNameList.length; i++){
-        addCustomLevel(cusNameList[i],b[i]);
+    isMyLevelGlobal = isMyLevel;
+
+    if(isMyLevel){
+        /*chage here for my level*/
+        var cus =  window.sessionStorage.getItem("cusName");
+        var cusName = cus.substr(0, cus.length - 1);
+        var cusNameList = cusName.split(",");
+        /*************add author name list*************/
+        var b = ["11","22","dd","ss","ff","dd","ss","ff","dd","ss","ff","dd"];
+        var i;
+        for(i = 0; i<cusNameList.length; i++){
+            addCustomLevel(cusNameList[i],b[i]);
+        }
+    }
+    else{
+        var cus =  window.sessionStorage.getItem("cusName");
+        var cusName = cus.substr(0, cus.length - 1);
+        var cusNameList = cusName.split(",");
+        /*************add author name list*************/
+        var b = ["11","22","dd","ss","ff","dd","ss","ff","dd","ss","ff","dd"];
+        var i;
+        for(i = 0; i<cusNameList.length; i++){
+            addCustomLevel(cusNameList[i],b[i]);
+        }
     }
 }
-document.getElementById("control-customize-button3").addEventListener('click',function(){addCustomLevelCaller();});
-
+document.getElementById("control-customize-button3").addEventListener('click',function(){addCustomLevelCaller(false);});
+document.getElementById("control-customize-button10").addEventListener('click',function(){addCustomLevelCaller(false);});
 
 
 function disableOriginButton(){
@@ -726,7 +745,7 @@ document.getElementById("control-customize-button2").addEventListener('click',fu
 
 
 
-function searchLevel(){
+function searchLevel(isMyLevel){
     var text = document.getElementById("search-box").value.toLowerCase();
     var table = document.getElementById("custom-level-table");
     var number = table.getElementsByTagName("tr").length;
@@ -736,16 +755,42 @@ function searchLevel(){
     }
     levelCount = 0;
     row = null;
-    var cus =  window.sessionStorage.getItem("cusName");
-    var cusName = cus.substr(0, cus.length - 1);
-    var cusNameList = cusName.split(",");
-    var i;
-    for(i = 0; i<cusNameList.length; i++){
-        var text2 = cusNameList[i].toLowerCase();
-        if(text2.indexOf(text)>=0){
-            addCustomLevel(cusNameList[i]);
+    if(isMyLevel){
+        /*chage here for my level*/
+        var cus =  window.sessionStorage.getItem("cusName");
+        var cusName = cus.substr(0, cus.length - 1);
+        var cusNameList = cusName.split(",");
+        /*************add author name list*************/
+        var b = ["11","22","dd","ss","ff","dd","ss","ff","dd","ss","ff","dd"];
+        /*var cusid =  window.sessionStorage.getItem("ID");
+        var cusid = cusid.substr(0, cusid.length - 1);
+        var b = cusid.split(",");*/
+        var i;
+        for(i = 0; i<cusNameList.length; i++){
+            var text2 = cusNameList[i].toLowerCase();
+            if(text2.indexOf(text)>=0){
+                addCustomLevel(cusNameList[i],b[i]);
+            }
         }
     }
+    else{
+        var cus =  window.sessionStorage.getItem("cusName");
+        var cusName = cus.substr(0, cus.length - 1);
+        var cusNameList = cusName.split(",");
+        /*************add author name list*************/
+        var b = ["11","22","dd","ss","ff","dd","ss","ff","dd","ss","ff","dd"];
+        /*var cusid =  window.sessionStorage.getItem("ID");
+        var cusid = cusid.substr(0, cusid.length - 1);
+        var b = cusid.split(",");*/
+        var i;
+        for(i = 0; i<cusNameList.length; i++){
+            var text2 = cusNameList[i].toLowerCase();
+            if(text2.indexOf(text)>=0){
+                addCustomLevel(cusNameList[i],b[i]);
+            }
+        }
+    }
+    
 }
-document.getElementById("search-box").addEventListener('input',function(){searchLevel();});
-/***********************************add by lead designer****************************************/
+document.getElementById("search-box").addEventListener('input',function(){searchLevel(isMyLevelGlobal);});
+/***********************************add by lead designer***************************************/
