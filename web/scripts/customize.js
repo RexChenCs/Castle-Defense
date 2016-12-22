@@ -219,7 +219,10 @@ function saveAction(){
             changeAlert(false,"save success");
             showAlert();
         }else{
-            var authorId = getIdFromCus(mapName);
+            var temp = window.localStorage.getItem(mapName);
+            var data = JSON.parse(temp);
+            var authorId = data.Id;
+                //getIdFromCus(mapName);
             var currentId = window.sessionStorage.getItem("UserId");
             if (currentId === authorId){
                 shareMyWork(mapName,defaultMap,monsterStack,money,Id,Name);
@@ -769,20 +772,19 @@ function shareMyWork(MapName,map,monster,balance,id,name){
 
 /*return author of map by mapName*/
 function getIdFromCus(MapName){
-    firebase.database().ref('share/'+ MapName+'/UserId').once("value").then(function(snapshot) {
+    var query = firebase.database().ref('share/'+ MapName+'/UserId');
+    query.on("value",function(snapshot) {
         window.sessionStorage.setItem("authorId",snapshot.val());
     });
     var Id = window.sessionStorage.getItem("authorId");
-    window.sessionStorage.removeItem("authorId");
     return Id;
 }
 
 /* read share cust level from firebase*/
 function readShareLevel(){
     var cusName = "";
-    //var query = firebase.database().ref("share").orderByKey();
-
-    firebase.database().ref("share").on("value",function(snapshot) {
+    var query = firebase.database().ref("share");
+    query.on("value",function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             // key will be "ada" the first time and "alan" the second time
             var key = childSnapshot.key;
@@ -803,11 +805,4 @@ function readShareLevel(){
 
 
 
-function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-        if ((new Date().getTime() - start) > milliseconds){
-            break;
-        }
-    }
-}
+

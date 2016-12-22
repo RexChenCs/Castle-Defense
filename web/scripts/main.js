@@ -40,7 +40,6 @@ function start() {
 
 
 function signInCallback(authResult) {
-
     if (authResult['code']) {
         /*change button for login process sucessful*/
         document.getElementById("guestbtn").style.display="none";
@@ -124,23 +123,25 @@ function updateUserInfo(){
 
 /* read share cust level from firebase*/
 function readShareLevel(){
-    var query = firebase.database().ref("share").orderByKey();
     var cusName = "";
-    query.once("value").then(function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
-                // key will be "ada" the first time and "alan" the second time
-                var key = childSnapshot.key;
-                cusName = cusName+key + ",";
-                window.sessionStorage.setItem("cusName",cusName);
-                //childData will be the actual contents of the child, and load cus level info to storage
-                var Data = childSnapshot;
-                var balance = Data.child("Balance").val();
-                var map = Data.child("Map").val();
-                var monster = Data.child("Monster").val();
-                var content = JSON.stringify({Map : map, Monster: monster, Money : balance});
-                window.localStorage.setItem(key,content);
-            });
+    var query = firebase.database().ref("share");
+    query.on("value",function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            // key will be "ada" the first time and "alan" the second time
+            var key = childSnapshot.key;
+            cusName = cusName+key + ",";
+            window.sessionStorage.setItem("cusName",cusName);
+            //childData will be the actual contents of the child, and load cus level info to storage
+            var Data = childSnapshot;
+            var balance = Data.child("Balance").val();
+            var map = Data.child("Map").val();
+            var monster = Data.child("Monster").val();
+            var id = Data.child("UserId").val();
+            var name = Data.child("UserName").val();
+            var content = JSON.stringify({Id: id, Name: name, Map : map, Monster: monster, Money : balance});
+            window.localStorage.setItem(key,content);
         });
+    });
 }
 
 /*write user info into DB for first time login player */
