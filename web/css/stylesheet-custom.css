@@ -897,3 +897,6 @@ button.all-custom-button:hover{
 }
 /*******search text box*******/
 
+.all-custom-button .glyphicon{
+    padding-right: 10px;
+}
