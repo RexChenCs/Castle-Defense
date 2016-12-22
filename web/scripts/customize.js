@@ -245,7 +245,6 @@ function loadLevel(levelname){
     monsterStack = data.Monster;
     addMonsterUIForLoad(monsterStack);
     refreshMap();
-
 }
 function refreshMap(){
     bg = game.add.sprite(0, 0, 'background');
@@ -281,6 +280,7 @@ function refreshMap(){
                 customizeMap[k] = new mapBase(j,i,game.add.image(j,i,'start'),'grid');
                 customizeMap[k].getImage().scale.setTo(size/10/100,size/10/100);
                 customizeMap[k].mapBaseBg.scale.setTo(size/10/100,size/10/100);
+                customizeMap[k].getImage().inputEnabled = true;
                 customizeMap[k].getImage().events.onInputDown.add(MapBaseListener, {param1: customizeMap[k] , param2:k});
 
                 //%%% new add
@@ -404,7 +404,7 @@ customizeScreen.prototype ={
         defaultMap =[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
         var bg = game.add.sprite(0, 0, 'background');
-        bg.scale.setTo(window.innerWidth/1800,window.innerHeight/1199)
+        bg.scale.setTo(window.innerWidth/1800,window.innerHeight/1199);
         var boardBg = game.add.sprite(size/20*2,size/20*2,'high_way');
         boardBg.scale.setTo(size/20*16/1000,size/20*16/1000);
         var k = 0;
@@ -779,9 +779,10 @@ function getIdFromCus(MapName){
 
 /* read share cust level from firebase*/
 function readShareLevel(){
-    var query = firebase.database().ref("share").orderByKey();
     var cusName = "";
-    query.once("value").then(function(snapshot) {
+    //var query = firebase.database().ref("share").orderByKey();
+
+    firebase.database().ref("share").on("value",function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             // key will be "ada" the first time and "alan" the second time
             var key = childSnapshot.key;
@@ -798,4 +799,15 @@ function readShareLevel(){
             window.localStorage.setItem(key,content);
         });
     });
+}
+
+
+
+function sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+        if ((new Date().getTime() - start) > milliseconds){
+            break;
+        }
+    }
 }

@@ -204,16 +204,6 @@
         </center>
     </div>
 </div>
-<!-- <div class="modal fade" id="load-popup" role="dialog">
-    <div class="close-select-monster-container"><button data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button></div>
-    <center>
-        <div class="load-container form-group">
-            <div>Please provide a unique name</div>
-            <input id="mapname" type="text" class="form-control" value="Level Name">
-            <button data-dismiss="modal" id="control-customize-button5">Load</button>
-        </div>
-    </center>
-</div> -->
 
 <!--jQuery and Bootstrap scripts-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -222,5 +212,12 @@
 <script src="scripts/phaser-state-transition.js"></script>
 <script src="scripts/customize.js"></script>
 <script src = "scripts/script-custom.js"></script>
+<script>
+    readShareLevel();
+    getIdFromCus("Test");
+    if(window.sessionStorage.getItem("UserId")==="Guest"){
+        hideMyCustomLevelsButton();
+    }
+</script>
 </body>
 </html>
