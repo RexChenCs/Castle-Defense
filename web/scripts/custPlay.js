@@ -135,7 +135,7 @@ towerObj.prototype.update = function() {
             this.nextFire = this.game.time.now + this.fireRate;
             var bullet = this.bullets.getFirstDead();
             bullet.reset(this.positionX + size/20, this.positionY+size/20);
-            bullet.rotation = this.game.physics.arcade.moveToXY(bullet,nearestTarget.monster.x+size/20,nearestTarget.monster.y+size/20,this.bulletspeed);
+            bullet.rotation = this.game.physics.arcade.moveToXY(bullet,nearestTarget.monster.x,nearestTarget.monster.y,this.bulletspeed+1000);
 
         }
         //if the tower is a healing tower
@@ -545,6 +545,7 @@ function removeTowerTips () {
     tower_place_tip.kill();
     tower_select_tip.kill();
     game.paused = false;
+    enableGameButton();
     last_spawn_time = game.time.time;
 
 }
@@ -722,7 +723,7 @@ gameScreen.prototype ={
         game.load.spritesheet('healing', 'assets/bullets/healing_ani.png', 900, 900, 6);
         game.load.image('logo', 'assets/menu_button.png');
         /*edit by liwen fan*/
-        game.load.image('mons_end','assets/mons_end.png');
+        game.load.image('mons_end','assets/mons_end2.png');
         game.load.image('mons_start','assets/mons_start.png');
         game.load.image('place_tower','assets/place_tower.png');
         game.load.image('select_tower','assets/select_tower.png');
@@ -1009,14 +1010,15 @@ gameScreen.prototype ={
     update: function() {
         /*Edit by Liwen Fan*/
         if(enteredTipsPause === false) {
+            disableGameButton();
             mons_start_tip = game.add.sprite(mons_start_position_x+size/10, mons_start_position_y+size/20, 'mons_start');
             mons_start_tip.anchor.setTo(0, 0.5);
             mons_start_tip.scale.setTo(size*6/10/600, size*2/10/200);
 
 
 
-            mons_end_tip = game.add.sprite(mons_end_position_x, mons_end_position_y+size/20, 'mons_end');
-            mons_end_tip.anchor.setTo(1, 0.5);
+            mons_end_tip = game.add.sprite(mons_end_position_x+size/10, mons_end_position_y+size/20, 'mons_end');
+            mons_end_tip.anchor.setTo(0, 0.5);
             mons_end_tip.scale.setTo(size*6/10/600, size*2/10/200);
 
 
@@ -1026,7 +1028,7 @@ gameScreen.prototype ={
         }
 
         if(enteredTowerTipsPause === false && enteredTipsPause === true){
-            tower_select_tip = game.add.sprite(window.innerWidth-370,window.innerHeight/2,'select_tower');
+            tower_select_tip = game.add.sprite(window.innerWidth-getSideBarWidth(),window.innerHeight/2,'select_tower');
             tower_select_tip.anchor.setTo(1, 0.5);
             tower_select_tip.scale.setTo(size*6/10/600, size*2/10/200);
 
@@ -1080,11 +1082,11 @@ gameScreen.prototype ={
 
 
                     if (popedValue === 0) {
-                        enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x + size / 20, mons_start_position_y + size / 20, home, 'feiLian', 5000, 50, 20, 1);
+                        enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x + size / 20, mons_start_position_y + size / 20, home, 'feiLian', 5000, 50, 35, 1);
                         //initialPositionX += 20;
                         //initialPositionY += 20;
                     } else if (popedValue === 1) {
-                        enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x + size / 20, mons_start_position_y + size / 20, home, 'hong', 5000, 30, 100, 1);
+                        enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x + size / 20, mons_start_position_y + size / 20, home, 'hong', 5000, 30, 50, 1);
                         //initialPositionX += 20;
                         //initialPositionY += 20;
                     } else if (popedValue === 2) {
@@ -1092,12 +1094,12 @@ gameScreen.prototype ={
                         //initialPositionX += 20;
                         //initialPositionY += 20;
                     } else if (popedValue === 3) {
-                        enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x + size / 20, mons_start_position_y + size / 20, home, 'qiLin', 5000, 30, 100, 1);
+                        enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x + size / 20, mons_start_position_y + size / 20, home, 'qiLin', 5000, 30, 50, 1);
                         //initialPositionX += 20;
                         //initialPositionY += 20;
                     } else if (popedValue === 4) {
                         //alert("reached"+enemyArrayIndex);
-                        enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x + size / 20, mons_start_position_y + size / 20, home, 'eye', 5000, 10, 50, 0);
+                        enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x + size / 20, mons_start_position_y + size / 20, home, 'eye', 5000, 10, 40, 0);
                         //alert("reached1"+enemyArrayIndex);
                         //initialPositionX += 20;
                         //initialPositionY += 20;

@@ -1,3 +1,5 @@
+/*Rex*/
+
 var btn_press = document.getElementById("btn_press");
 var btn_click = document.getElementById("btn_click");
 
