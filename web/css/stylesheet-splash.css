@@ -137,11 +137,14 @@ body{
 
 /*******left container*******/
 .game-title-container .title-logo-div{
-	position: fixed;
+	color: white;
+	position: absolute;
 	top: 7px;
 	left: 7px;
 }
 .game-title-container{
+	background: rgba(67, 80, 86, 0.7);
+	box-shadow: 0px 0px 12px 2px rgba(67, 80, 86, 0.7);
 	/*font*/
 	font-family: 'Alegreya';/*can use different font later*/
 	font-weight: bold;
@@ -180,7 +183,7 @@ body{
 	left: 3px;
 }
 .game-title-container{
-	font-size: 22px;
+	font-size: 15px;
 }
 .game-title-container img{
 	height: 35px;
@@ -196,11 +199,12 @@ body{
 
 /*******right container*******/
 .username-div{
+	color: white;
 	position: fixed;
-	top: 7px;
+	top: 15px;
 	right: 7px;
-	background: rgba(67, 80, 86, 0.3);
-	box-shadow: 0px 0px 12px 2px rgba(67, 80, 86, 0.3);
+	background: rgba(67, 80, 86, 1);
+	box-shadow: 0px 0px 12px 2px rgba(67, 80, 86, 1);
 	padding: 10px 20px 10px 20px;
 	text-align: center;
 	/*font*/
@@ -208,20 +212,38 @@ body{
 	font-weight: bold;
 	font-size: 23px;
 }
+.top-title{
+	color: white;
+	position: relative;
+	top: 0px;
+	
+	padding: 10px 20px 10px 20px;
+	text-align: center;
+	/*font*/
+	font-family: 'Roboto';/*can use different font later*/
+	font-weight: bold;
+	font-size: 50px;
+}
 @media screen and (max-width: 900px){
 .username-div{
-	top: 5px;
+	top: 7px;
 	right: 5px;
 	padding: 7px 17px 7px 17px;
 	font-size: 21px;
 }
+.top-title{
+	font-size: 30px;
+}
 }
 @media screen and (max-width: 550px){
 .username-div{
-	top: 3px;
+	top: 7px;
 	right: 3px;
 	padding: 5px 15px 5px 15px;
 	font-size: 19px;
+}
+.top-title{
+	font-size: 21px;
 }
 }
 /*******right container*******/
