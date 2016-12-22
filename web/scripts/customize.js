@@ -793,4 +793,9 @@ function searchLevel(isMyLevel){
     
 }
 document.getElementById("search-box").addEventListener('input',function(){searchLevel(isMyLevelGlobal);});
+
+
+function hideMyCustomLevelsButton(){
+    document.getElementById("control-customize-button10").style.display="none";
+}
 /***********************************add by lead designer***************************************/
