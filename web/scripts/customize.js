@@ -61,7 +61,6 @@ function MapBaseListener(){
     //%%%% change here
     if (selectedTower === 6){
         if (uniqueStart() === true){
-
             this.param1.getImage().destroy();
             this.param1 = new mapBase(this.param1.getPosition()[0], this.param1.getPosition()[1],game.add.image(this.param1.getPosition()[0], this.param1.getPosition()[1],'start'),'grid');
             this.param1.getImage().scale.setTo(size/10/100,size/10/100);
@@ -190,7 +189,6 @@ function formatTo2DArray(array){
 
     console.log(newArr);
 
-
     return newArr;
 }
 //%%%%% new add %%%%//
@@ -201,42 +199,44 @@ function actionOnClick () {
 
 }
 function saveAction(){
-    // validateMap()
-    // if(movingPathReady == true){
-    //     console.log("path ready")
-    // }
-    // else{
-    //     console.log ("not ready")
-    // }
-    money = getCustomMoney();
-    var content = JSON.stringify({Map : defaultMap, Monster: monsterStack, Money : money});
-    mapName = getLevelName();
-    shareMyWork(mapName,defaultMap,monsterStack,money);
-    //change
-    var cuslist = window.sessionStorage.getItem("cusName");
-    if(cuslist.indexOf(","+mapName+",") === -1){
-        cuslist = cuslist+mapName+",";
-        window.sessionStorage.setItem("cusName",cuslist);
+    var id = window.sessionStorage.getItem("UserId");
+    var username = window.sessionStorage.getItem("UserName");
+    var money = getCustomMoney();
+    var content = JSON.stringify({Id: id, Name: username, Map : defaultMap, Monster: monsterStack, Money : money});
+    var mapName = getLevelName();
+    var Id = window.sessionStorage.getItem("UserId");
+    var Name = window.sessionStorage.getItem("UserName");
+    if(Id === "Guest"){
+        changeAlert(true,"Please Login First!");
+        showAlert();
+    }else{
+        var cuslist = window.sessionStorage.getItem("cusName");
+        if(cuslist.indexOf(mapName+",") === -1){
+            shareMyWork(mapName,defaultMap,monsterStack,money,Id,Name);
+            cuslist = cuslist+mapName+",";
+            window.sessionStorage.setItem("cusName",cuslist);
+            window.localStorage.setItem(mapName,content);
+            changeAlert(false,"save success");
+            showAlert();
+        }else{
+            var authorId = getIdFromCus(mapName);
+            var currentId = window.sessionStorage.getItem("UserId");
+            if (currentId === authorId){
+                shareMyWork(mapName,defaultMap,monsterStack,money,Id,Name);
+                window.localStorage.setItem(mapName,content);
+                changeAlert(false,"save success");
+                showAlert();
+            }else{
+                changeAlert(true,"Level Name was already taken,Please select another name");
+                showAlert();
+            }
+        }
     }
-    //change
-    window.localStorage.setItem(mapName,content);
-    changeAlert(false,"save success");
-    showAlert();
 }
 
 function loadLevel(levelname){
     resetmap();
     mapName = levelname;
-    // change
-    // firebase.database().ref('share/' + levelname).once('value').then(function(snapshot) {
-    //     var balance = snapshot.child("Balance").val();
-    //     var map = snapshot.child("Map").val();
-    //     var monster = snapshot.child("Monster").val();
-    //     var content = JSON.stringify({Map : map, Monster: monster, Money : balance});
-    //     //alert(content);
-    //     window.localStorage.setItem(mapName,content);
-    // });
-    // change
     var temp = window.localStorage.getItem(levelname);
     var data = JSON.parse(temp);
     money = data.Money;
@@ -343,9 +343,6 @@ function addMonster(num){
     if (num ===0){
         monsterStack.push(0);
 
-
-
-
     }
     else if (num ===1){
         monsterStack.push(1);
@@ -374,7 +371,7 @@ window.onload = function() {
     game.state.add("customizeScreen",customizeScreen);
 
     game.state.start("customizeScreen");
-}
+};
 
 
 var customizeScreen =  function (game){};
@@ -404,16 +401,7 @@ customizeScreen.prototype ={
         monsterStack = new Array();
         customizeMap = new Array();
         monsterStack =[4,4];
-        defaultMap =[
-            0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0
-        ];
+        defaultMap =[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
         var bg = game.add.sprite(0, 0, 'background');
         bg.scale.setTo(window.innerWidth/1800,window.innerHeight/1199)
@@ -470,39 +458,8 @@ customizeScreen.prototype ={
             }
         }
 
-        // var cstartButton = game.add.button(size/20*19, size/3, 'eyetowerButton', actionOnClick, {param1:6}, 0, 0, 0);
-        // var cpathButton = game.add.button(size/20*18, size/3, 'eyetowerButton', actionOnClick, {param1:7}, 0, 0, 0);
-        // var cendButton = game.add.button(size/20*17, size/3, 'eyetowerButton', actionOnClick, {param1:8}, 0, 0, 0);
-        // var removeButton = game.add.button(size/20*16, size/3, 'eyetowerButton', actionOnClick, {param1:9}, 0, 0, 0);
-        //
-        // var saveButton = game.add.button(size/20*30, size/3, 'eyetowerButton',saveAction);
-        //
-        // var addFeilian = game.add.button(size/20*19, size/2, 'eyetowerButton',addMonster,{monster:0});
-        // var addHon = game.add.button(size/20*24, size/2, 'eyetowerButton',addMonster,{monster:1});
-        // var addHuodou = game.add.button(size/20*25, size/2, 'eyetowerButton',addMonster,{monster:2});
-        // var addqilin = game.add.button(size/20*26, size/2, 'eyetowerButton',addMonster,{monster:3});
-        // var addeye= game.add.button(size/20*27, size/2, 'eyetowerButton',addMonster,{monster:4});
-
-
-
-        // textfield
-        //monster array
-
-
-    },// create end
-    /*update: function(){
-     if (addFeilian.input.onDown){
-     game.add.sprite(100,200,"feiLian");
-     }
-     }*/
-
-
-}
-
-
-
-
-
+    }
+};
 
 
 
@@ -518,9 +475,7 @@ function getLevelName(){
     //window.alert(document.getElementById("levelname").value);
     return document.getElementById("levelname").value;
 }
-/*function getloadMapName(){
- return document.getElementById("mapname").value;
- }*/
+
 function getCustomMoney(){
     //window.alert(document.getElementById("money-text").innerHTML);
     return document.getElementById("money-text").innerHTML;
@@ -539,15 +494,12 @@ document.getElementById("control-customize-button1").addEventListener('click',fu
     }
     else{
         changeAlert(true,"Please save first!");
-        showAlert()
+        showAlert();
     }
 
 });
 document.getElementById("control-customize-button2").addEventListener('click',function(){saveAction()});
 document.getElementById("control-customize-button4").addEventListener('click',function(){window.location.href="game.html"});
-/*document.getElementById("control-customize-button5").addEventListener('click',function(){
- loadLevel(getloadMapName());
- })*/
 
 function moneyText(isIncrement){
     var s = document.getElementById("money-text").textContent;
@@ -619,9 +571,6 @@ function addMonsterUIForLoad(list){
         addMonsterUI(monstername[list[i]]);
     }
 }
-function shareMyWork(MapName,map,monster,balance){
-    firebase.database().ref('share/'+MapName).set({Map : map, Monster : monster,Balance:balance});
-}
 
 document.getElementById("feilian-button").addEventListener('click',function(){addMonsterUI("Fei Lian");addMonster(0);});
 document.getElementById("citie-button").addEventListener('click',function(){addMonsterUI("Ci Tie");addMonster(5);});
@@ -635,6 +584,7 @@ document.getElementById("mob-button").addEventListener('click',function(){addMon
 var levelCount = 0;
 var row = null;
 function addCustomLevel(name,author){
+    readShareLevel();
     var table = document.getElementById("custom-level-table");
     if(levelCount%6==0){
         row = table.insertRow(-1);
@@ -663,8 +613,12 @@ function addCustomLevel(name,author){
     button.setAttribute("data-dismiss", "modal");
     col2.appendChild(button);
 }
+
 var isMyLevelGlobal = false;
+
 function addCustomLevelCaller(isMyLevel){
+    readShareLevel();
+    // add
     document.getElementById("search-box").value = "";
     var table = document.getElementById("custom-level-table");
     var number = table.getElementsByTagName("tr").length;
@@ -682,10 +636,15 @@ function addCustomLevelCaller(isMyLevel){
         var cusName = cus.substr(0, cus.length - 1);
         var cusNameList = cusName.split(",");
         /*************add author name list*************/
-        var b = ["11","22","dd","ss","ff","dd","ss","ff","dd","ss","ff","dd"];
+        var currentId = window.sessionStorage.getItem("UserId");
         var i;
         for(i = 0; i<cusNameList.length; i++){
-            addCustomLevel(cusNameList[i],b[i]);
+            var temp = window.localStorage.getItem(cusNameList[i]);
+            var data = JSON.parse(temp);
+            if(currentId === data.Id){
+                var authorName = data.Name;
+                addCustomLevel(cusNameList[i],authorName);
+            }
         }
     }
     else{
@@ -693,10 +652,12 @@ function addCustomLevelCaller(isMyLevel){
         var cusName = cus.substr(0, cus.length - 1);
         var cusNameList = cusName.split(",");
         /*************add author name list*************/
-        var b = ["11","22","dd","ss","ff","dd","ss","ff","dd","ss","ff","dd"];
         var i;
         for(i = 0; i<cusNameList.length; i++){
-            addCustomLevel(cusNameList[i],b[i]);
+            var temp = window.localStorage.getItem(cusNameList[i]);
+            var data = JSON.parse(temp);
+            var authorName = data.Name;
+            addCustomLevel(cusNameList[i],authorName);
         }
     }
 }
@@ -720,9 +681,6 @@ function getSideBarWidth(){
     return document.getElementById('game-side-bar').clientWidth+10;
 }
 
-
-
-
 var alert1 = document.getElementById("alert-normal");
 function hideAlert(){
     alert1.style.display="none";
@@ -744,7 +702,6 @@ document.getElementById("control-customize-button2").addEventListener('click',fu
 
 
 
-
 function searchLevel(isMyLevel){
     var text = document.getElementById("search-box").value.toLowerCase();
     var table = document.getElementById("custom-level-table");
@@ -760,16 +717,18 @@ function searchLevel(isMyLevel){
         var cus =  window.sessionStorage.getItem("cusName");
         var cusName = cus.substr(0, cus.length - 1);
         var cusNameList = cusName.split(",");
+        var currentId = window.sessionStorage.getItem("UserId");
         /*************add author name list*************/
-        var b = ["11","22","dd","ss","ff","dd","ss","ff","dd","ss","ff","dd"];
-        /*var cusid =  window.sessionStorage.getItem("ID");
-        var cusid = cusid.substr(0, cusid.length - 1);
-        var b = cusid.split(",");*/
         var i;
         for(i = 0; i<cusNameList.length; i++){
             var text2 = cusNameList[i].toLowerCase();
+            var temp = window.localStorage.getItem(cusNameList[i]);
+            var data = JSON.parse(temp);
             if(text2.indexOf(text)>=0){
-                addCustomLevel(cusNameList[i],b[i]);
+                if(currentId === data.Id){
+                    var authorName = data.Name;
+                    addCustomLevel(cusNameList[i],authorName);
+                }
             }
         }
     }
@@ -778,20 +737,20 @@ function searchLevel(isMyLevel){
         var cusName = cus.substr(0, cus.length - 1);
         var cusNameList = cusName.split(",");
         /*************add author name list*************/
-        var b = ["11","22","dd","ss","ff","dd","ss","ff","dd","ss","ff","dd"];
-        /*var cusid =  window.sessionStorage.getItem("ID");
-        var cusid = cusid.substr(0, cusid.length - 1);
-        var b = cusid.split(",");*/
         var i;
         for(i = 0; i<cusNameList.length; i++){
             var text2 = cusNameList[i].toLowerCase();
+            var temp = window.localStorage.getItem(cusNameList[i]);
+            var data = JSON.parse(temp);
             if(text2.indexOf(text)>=0){
-                addCustomLevel(cusNameList[i],b[i]);
+                var authorName = data.Name;
+                addCustomLevel(cusNameList[i],authorName);
             }
         }
     }
     
 }
+
 document.getElementById("search-box").addEventListener('input',function(){searchLevel(isMyLevelGlobal);});
 
 
@@ -799,3 +758,44 @@ function hideMyCustomLevelsButton(){
     document.getElementById("control-customize-button10").style.display="none";
 }
 /***********************************add by lead designer***************************************/
+
+
+
+/***********************************Database control function ***************************************/
+/* udpate cust level into data base*/
+function shareMyWork(MapName,map,monster,balance,id,name){
+    firebase.database().ref('share/'+MapName).set({UserId: id, UserName: name, Map : map, Monster : monster,Balance:balance});
+}
+
+/*return author of map by mapName*/
+function getIdFromCus(MapName){
+    firebase.database().ref('share/'+ MapName+'/UserId').once("value").then(function(snapshot) {
+        window.sessionStorage.setItem("authorId",snapshot.val());
+    });
+    var Id = window.sessionStorage.getItem("authorId");
+    window.sessionStorage.removeItem("authorId");
+    return Id;
+}
+
+/* read share cust level from firebase*/
+function readShareLevel(){
+    var query = firebase.database().ref("share").orderByKey();
+    var cusName = "";
+    query.once("value").then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            // key will be "ada" the first time and "alan" the second time
+            var key = childSnapshot.key;
+            cusName = cusName+key + ",";
+            window.sessionStorage.setItem("cusName",cusName);
+            //childData will be the actual contents of the child, and load cus level info to storage
+            var Data = childSnapshot;
+            var balance = Data.child("Balance").val();
+            var map = Data.child("Map").val();
+            var monster = Data.child("Monster").val();
+            var id = Data.child("UserId").val();
+            var name = Data.child("UserName").val();
+            var content = JSON.stringify({Id: id, Name: name, Map : map, Monster: monster, Money : balance});
+            window.localStorage.setItem(key,content);
+        });
+    });
+}
